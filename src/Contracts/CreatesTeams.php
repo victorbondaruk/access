@@ -1,6 +1,6 @@
 <?php
 
-namespace VictorBondaruk\Access\Contracts;
+namespace Victorbondaruk\Access\Contracts;
 
 /**
  * @method \Illuminate\Database\Eloquent\Model create(\Illuminate\Foundation\Auth\User $user, array $input)

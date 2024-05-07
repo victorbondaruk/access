@@ -1,18 +1,18 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use VictorBondaruk\Access\Http\Controllers\CurrentTeamController;
-use VictorBondaruk\Access\Http\Controllers\Inertia\ApiTokenController;
-use VictorBondaruk\Access\Http\Controllers\Inertia\CurrentUserController;
-use VictorBondaruk\Access\Http\Controllers\Inertia\OtherBrowserSessionsController;
-use VictorBondaruk\Access\Http\Controllers\Inertia\PrivacyPolicyController;
-use VictorBondaruk\Access\Http\Controllers\Inertia\ProfilePhotoController;
-use VictorBondaruk\Access\Http\Controllers\Inertia\TeamController;
-use VictorBondaruk\Access\Http\Controllers\Inertia\TeamMemberController;
-use VictorBondaruk\Access\Http\Controllers\Inertia\TermsOfServiceController;
-use VictorBondaruk\Access\Http\Controllers\Inertia\UserProfileController;
-use VictorBondaruk\Access\Http\Controllers\TeamInvitationController;
-use VictorBondaruk\Access\Access;
+use Victorbondaruk\Access\Http\Controllers\CurrentTeamController;
+use Victorbondaruk\Access\Http\Controllers\Inertia\ApiTokenController;
+use Victorbondaruk\Access\Http\Controllers\Inertia\CurrentUserController;
+use Victorbondaruk\Access\Http\Controllers\Inertia\OtherBrowserSessionsController;
+use Victorbondaruk\Access\Http\Controllers\Inertia\PrivacyPolicyController;
+use Victorbondaruk\Access\Http\Controllers\Inertia\ProfilePhotoController;
+use Victorbondaruk\Access\Http\Controllers\Inertia\TeamController;
+use Victorbondaruk\Access\Http\Controllers\Inertia\TeamMemberController;
+use Victorbondaruk\Access\Http\Controllers\Inertia\TermsOfServiceController;
+use Victorbondaruk\Access\Http\Controllers\Inertia\UserProfileController;
+use Victorbondaruk\Access\Http\Controllers\TeamInvitationController;
+use Victorbondaruk\Access\Access;
 
 Route::group(['middleware' => config('access.middleware', ['web'])], function () {
     if (Access::hasTermsAndPrivacyPolicyFeature()) {

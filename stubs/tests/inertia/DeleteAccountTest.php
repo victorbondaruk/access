@@ -4,7 +4,7 @@ namespace Tests\Feature;
 
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use VictorBondaruk\Access\Features;
+use Victorbondaruk\Access\Features;
 use Tests\TestCase;
 
 class DeleteAccountTest extends TestCase

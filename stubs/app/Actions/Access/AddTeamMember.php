@@ -7,11 +7,11 @@ use App\Models\User;
 use Closure;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Validator;
-use VictorBondaruk\Access\Contracts\AddsTeamMembers;
-use VictorBondaruk\Access\Events\AddingTeamMember;
-use VictorBondaruk\Access\Events\TeamMemberAdded;
-use VictorBondaruk\Access\Access;
-use VictorBondaruk\Access\Rules\Role;
+use Victorbondaruk\Access\Contracts\AddsTeamMembers;
+use Victorbondaruk\Access\Events\AddingTeamMember;
+use Victorbondaruk\Access\Events\TeamMemberAdded;
+use Victorbondaruk\Access\Access;
+use Victorbondaruk\Access\Rules\Role;
 
 class AddTeamMember implements AddsTeamMembers
 {

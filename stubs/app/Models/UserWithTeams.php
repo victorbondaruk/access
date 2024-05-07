@@ -7,8 +7,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
-use VictorBondaruk\Access\HasProfilePhoto;
-use VictorBondaruk\Access\HasTeams;
+use Victorbondaruk\Access\HasProfilePhoto;
+use Victorbondaruk\Access\HasTeams;
 use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable

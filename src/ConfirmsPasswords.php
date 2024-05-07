@@ -1,6 +1,6 @@
 <?php
 
-namespace VictorBondaruk\Access;
+namespace Victorbondaruk\Access;
 
 use Illuminate\Contracts\Auth\StatefulGuard;
 use Illuminate\Support\Facades\Auth;

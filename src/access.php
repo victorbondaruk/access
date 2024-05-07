@@ -1,16 +1,16 @@
 <?php
 
-namespace VictorBondaruk\Access;
+namespace Victorbondaruk\Access;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
-use VictorBondaruk\Access\Contracts\AddsTeamMembers;
-use VictorBondaruk\Access\Contracts\CreatesTeams;
-use VictorBondaruk\Access\Contracts\DeletesTeams;
-use VictorBondaruk\Access\Contracts\DeletesUsers;
-use VictorBondaruk\Access\Contracts\InvitesTeamMembers;
-use VictorBondaruk\Access\Contracts\RemovesTeamMembers;
-use VictorBondaruk\Access\Contracts\UpdatesTeamNames;
+use Victorbondaruk\Access\Contracts\AddsTeamMembers;
+use Victorbondaruk\Access\Contracts\CreatesTeams;
+use Victorbondaruk\Access\Contracts\DeletesTeams;
+use Victorbondaruk\Access\Contracts\DeletesUsers;
+use Victorbondaruk\Access\Contracts\InvitesTeamMembers;
+use Victorbondaruk\Access\Contracts\RemovesTeamMembers;
+use Victorbondaruk\Access\Contracts\UpdatesTeamNames;
 
 class Access
 {
@@ -73,7 +73,7 @@ class Access
     /**
      * The Inertia manager instance.
      *
-     * @var \VictorBondaruk\Access\InertiaManager
+     * @var \Victorbondaruk\Access\InertiaManager
      */
     public static $inertiaManager;
 
@@ -91,7 +91,7 @@ class Access
      * Find the role with the given key.
      *
      * @param  string  $key
-     * @return \VictorBondaruk\Access\Role
+     * @return \Victorbondaruk\Access\Role
      */
     public static function findRole(string $key)
     {
@@ -104,7 +104,7 @@ class Access
      * @param  string  $key
      * @param  string  $name
      * @param  array  $permissions
-     * @return \VictorBondaruk\Access\Role
+     * @return \Victorbondaruk\Access\Role
      */
     public static function role(string $key, string $name, array $permissions)
     {
@@ -447,7 +447,7 @@ class Access
     /**
      * Manage Access's Inertia settings.
      *
-     * @return \VictorBondaruk\Access\InertiaManager
+     * @return \Victorbondaruk\Access\InertiaManager
      */
     public static function inertia()
     {

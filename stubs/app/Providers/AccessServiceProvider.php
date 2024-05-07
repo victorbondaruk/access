@@ -4,7 +4,7 @@ namespace App\Providers;
 
 use App\Actions\Access\DeleteUser;
 use Illuminate\Support\ServiceProvider;
-use VictorBondaruk\Access\Access;
+use Victorbondaruk\Access\Access;
 
 class AccessServiceProvider extends ServiceProvider
 {

@@ -5,8 +5,8 @@ namespace App\Actions\Access;
 use App\Models\Team;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
-use VictorBondaruk\Access\Contracts\DeletesTeams;
-use VictorBondaruk\Access\Contracts\DeletesUsers;
+use Victorbondaruk\Access\Contracts\DeletesTeams;
+use Victorbondaruk\Access\Contracts\DeletesUsers;
 
 class DeleteUser implements DeletesUsers
 {

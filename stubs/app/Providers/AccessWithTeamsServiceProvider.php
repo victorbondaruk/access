@@ -10,7 +10,7 @@ use App\Actions\Access\InviteTeamMember;
 use App\Actions\Access\RemoveTeamMember;
 use App\Actions\Access\UpdateTeamName;
 use Illuminate\Support\ServiceProvider;
-use VictorBondaruk\Access\Access;
+use Victorbondaruk\Access\Access;
 
 class AccessServiceProvider extends ServiceProvider
 {

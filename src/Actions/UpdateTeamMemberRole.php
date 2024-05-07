@@ -1,12 +1,12 @@
 <?php
 
-namespace VictorBondaruk\Access\Actions;
+namespace Victorbondaruk\Access\Actions;
 
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Validator;
-use VictorBondaruk\Access\Events\TeamMemberUpdated;
-use VictorBondaruk\Access\Access;
-use VictorBondaruk\Access\Rules\Role;
+use Victorbondaruk\Access\Events\TeamMemberUpdated;
+use Victorbondaruk\Access\Access;
+use Victorbondaruk\Access\Rules\Role;
 
 class UpdateTeamMemberRole
 {

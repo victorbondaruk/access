@@ -1,6 +1,6 @@
 <?php
 
-namespace VictorBondaruk\Access;
+namespace Victorbondaruk\Access;
 
 class OwnerRole extends Role
 {

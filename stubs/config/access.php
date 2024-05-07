@@ -1,7 +1,7 @@
 <?php
 
-use VictorBondaruk\Access\Features;
-use VictorBondaruk\Access\Http\Middleware\AuthenticateSession;
+use Victorbondaruk\Access\Features;
+use Victorbondaruk\Access\Http\Middleware\AuthenticateSession;
 
 return [
 

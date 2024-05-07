@@ -3,8 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use VictorBondaruk\Access\Access;
-use VictorBondaruk\Access\TeamInvitation as AccessTeamInvitation;
+use Victorbondaruk\Access\Access;
+use Victorbondaruk\Access\TeamInvitation as AccessTeamInvitation;
 
 class TeamInvitation extends AccessTeamInvitation
 {

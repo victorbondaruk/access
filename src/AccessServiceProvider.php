@@ -1,6 +1,6 @@
 <?php
 
-namespace VictorBondaruk\Access;
+namespace Victorbondaruk\Access;
 
 use App\Http\Middleware\HandleInertiaRequests;
 use Illuminate\Contracts\Http\Kernel;
@@ -14,7 +14,19 @@ use Illuminate\View\Compilers\BladeCompiler;
 use Inertia\Inertia;
 use Laravel\Fortify\Events\PasswordUpdatedViaController;
 use Laravel\Fortify\Fortify;
-use VictorBondaruk\Access\Http\Middleware\ShareInertiaData;
+use Victorbondaruk\Access\Http\Livewire\ApiTokenManager;
+use Victorbondaruk\Access\Http\Livewire\CreateTeamForm;
+use Victorbondaruk\Access\Http\Livewire\DeleteTeamForm;
+use Victorbondaruk\Access\Http\Livewire\DeleteUserForm;
+use Victorbondaruk\Access\Http\Livewire\LogoutOtherBrowserSessionsForm;
+use Victorbondaruk\Access\Http\Livewire\NavigationMenu;
+use Victorbondaruk\Access\Http\Livewire\TeamMemberManager;
+use Victorbondaruk\Access\Http\Livewire\TwoFactorAuthenticationForm;
+use Victorbondaruk\Access\Http\Livewire\UpdatePasswordForm;
+use Victorbondaruk\Access\Http\Livewire\UpdateProfileInformationForm;
+use Victorbondaruk\Access\Http\Livewire\UpdateTeamNameForm;
+use Victorbondaruk\Access\Http\Middleware\ShareInertiaData;
+use Livewire\Livewire;
 
 class AccessServiceProvider extends ServiceProvider
 {
@@ -49,6 +61,14 @@ class AccessServiceProvider extends ServiceProvider
             ]);
         });
 
+        RedirectResponse::macro('warningBanner', function ($message) {
+            /** @var \Illuminate\Http\RedirectResponse $this */
+            return $this->with('flash', [
+                'bannerStyle' => 'warning',
+                'banner' => $message,
+            ]);
+        });
+
         RedirectResponse::macro('dangerBanner', function ($message) {
             /** @var \Illuminate\Http\RedirectResponse $this */
             return $this->with('flash', [
@@ -59,6 +79,26 @@ class AccessServiceProvider extends ServiceProvider
 
         if (config('access.stack') === 'inertia' && class_exists(Inertia::class)) {
             $this->bootInertia();
+        }
+
+        if (config('access.stack') === 'livewire' && class_exists(Livewire::class)) {
+            Livewire::component('navigation-menu', NavigationMenu::class);
+            Livewire::component('profile.update-profile-information-form', UpdateProfileInformationForm::class);
+            Livewire::component('profile.update-password-form', UpdatePasswordForm::class);
+            Livewire::component('profile.two-factor-authentication-form', TwoFactorAuthenticationForm::class);
+            Livewire::component('profile.logout-other-browser-sessions-form', LogoutOtherBrowserSessionsForm::class);
+            Livewire::component('profile.delete-user-form', DeleteUserForm::class);
+
+            if (Features::hasApiFeatures()) {
+                Livewire::component('api.api-token-manager', ApiTokenManager::class);
+            }
+
+            if (Features::hasTeamFeatures()) {
+                Livewire::component('teams.create-team-form', CreateTeamForm::class);
+                Livewire::component('teams.update-team-name-form', UpdateTeamNameForm::class);
+                Livewire::component('teams.team-member-manager', TeamMemberManager::class);
+                Livewire::component('teams.delete-team-form', DeleteTeamForm::class);
+            }
         }
     }
 
@@ -108,7 +148,7 @@ class AccessServiceProvider extends ServiceProvider
     {
         if (Access::$registersRoutes) {
             Route::group([
-                'namespace' => 'VictorBondaruk\Access\Http\Controllers',
+                'namespace' => 'Victorbondaruk\Access\Http\Controllers',
                 'domain' => config('access.domain', null),
                 'prefix' => config('access.prefix', config('access.path')),
             ], function () {

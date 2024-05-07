@@ -1,6 +1,6 @@
 <?php
 
-namespace VictorBondaruk\Access\Http\Controllers\Inertia;
+namespace Victorbondaruk\Access\Http\Controllers\Inertia;
 
 use Illuminate\Contracts\Auth\StatefulGuard;
 use Illuminate\Http\Request;

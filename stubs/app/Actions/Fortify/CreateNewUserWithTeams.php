@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
-use VictorBondaruk\Access\Access;
+use Victorbondaruk\Access\Access;
 
 class CreateNewUser implements CreatesNewUsers
 {

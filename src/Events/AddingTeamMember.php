@@ -1,6 +1,6 @@
 <?php
 
-namespace VictorBondaruk\Access\Events;
+namespace Victorbondaruk\Access\Events;
 
 use Illuminate\Foundation\Events\Dispatchable;
 

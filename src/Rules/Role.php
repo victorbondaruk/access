@@ -1,9 +1,9 @@
 <?php
 
-namespace VictorBondaruk\Access\Rules;
+namespace Victorbondaruk\Access\Rules;
 
 use Illuminate\Contracts\Validation\Rule;
-use VictorBondaruk\Access\Access;
+use Victorbondaruk\Access\Access;
 
 class Role implements Rule
 {

@@ -1,16 +1,16 @@
 <?php
 
-namespace VictorBondaruk\Access\Http\Controllers\Inertia;
+namespace Victorbondaruk\Access\Http\Controllers\Inertia;
 
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Gate;
-use VictorBondaruk\Access\Actions\ValidateTeamDeletion;
-use VictorBondaruk\Access\Contracts\CreatesTeams;
-use VictorBondaruk\Access\Contracts\DeletesTeams;
-use VictorBondaruk\Access\Contracts\UpdatesTeamNames;
-use VictorBondaruk\Access\Access;
-use VictorBondaruk\Access\RedirectsActions;
+use Victorbondaruk\Access\Actions\ValidateTeamDeletion;
+use Victorbondaruk\Access\Contracts\CreatesTeams;
+use Victorbondaruk\Access\Contracts\DeletesTeams;
+use Victorbondaruk\Access\Contracts\UpdatesTeamNames;
+use Victorbondaruk\Access\Access;
+use Victorbondaruk\Access\RedirectsActions;
 
 class TeamController extends Controller
 {

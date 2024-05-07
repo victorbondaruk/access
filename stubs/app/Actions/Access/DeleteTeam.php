@@ -3,7 +3,7 @@
 namespace App\Actions\Access;
 
 use App\Models\Team;
-use VictorBondaruk\Access\Contracts\DeletesTeams;
+use Victorbondaruk\Access\Contracts\DeletesTeams;
 
 class DeleteTeam implements DeletesTeams
 {

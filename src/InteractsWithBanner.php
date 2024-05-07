@@ -1,6 +1,6 @@
 <?php
 
-namespace VictorBondaruk\Access;
+namespace Victorbondaruk\Access;
 
 trait InteractsWithBanner
 {
@@ -20,7 +20,22 @@ trait InteractsWithBanner
     }
 
     /**
-     * Update the banner message with an danger / error message.
+     * Update the banner message with a warning message.
+     *
+     * @param  string  $message
+     * @return void
+     */
+    protected function warningBanner($message)
+    {
+        $this->dispatch(
+            'banner-message',
+            style: 'warning',
+            message: $message,
+        );
+    }
+
+    /**
+     * Update the banner message with a danger / error message.
      *
      * @param  string  $message
      * @return void

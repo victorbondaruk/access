@@ -1,15 +1,15 @@
 <?php
 
-namespace VictorBondaruk\Access\Http\Controllers\Inertia;
+namespace Victorbondaruk\Access\Http\Controllers\Inertia;
 
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-use VictorBondaruk\Access\Actions\UpdateTeamMemberRole;
-use VictorBondaruk\Access\Contracts\AddsTeamMembers;
-use VictorBondaruk\Access\Contracts\InvitesTeamMembers;
-use VictorBondaruk\Access\Contracts\RemovesTeamMembers;
-use VictorBondaruk\Access\Features;
-use VictorBondaruk\Access\Access;
+use Victorbondaruk\Access\Actions\UpdateTeamMemberRole;
+use Victorbondaruk\Access\Contracts\AddsTeamMembers;
+use Victorbondaruk\Access\Contracts\InvitesTeamMembers;
+use Victorbondaruk\Access\Contracts\RemovesTeamMembers;
+use Victorbondaruk\Access\Features;
+use Victorbondaruk\Access\Access;
 
 class TeamMemberController extends Controller
 {

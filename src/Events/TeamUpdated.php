@@ -1,6 +1,6 @@
 <?php
 
-namespace VictorBondaruk\Access\Events;
+namespace Victorbondaruk\Access\Events;
 
 class TeamUpdated extends TeamEvent
 {

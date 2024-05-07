@@ -1,10 +1,10 @@
 <?php
 
-namespace VictorBondaruk\Access\Http\Controllers;
+namespace Victorbondaruk\Access\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-use VictorBondaruk\Access\Access;
+use Victorbondaruk\Access\Access;
 
 class CurrentTeamController extends Controller
 {

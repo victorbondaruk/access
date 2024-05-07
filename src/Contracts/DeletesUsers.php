@@ -1,6 +1,6 @@
 <?php
 
-namespace VictorBondaruk\Access\Contracts;
+namespace Victorbondaruk\Access\Contracts;
 
 /**
  * @method void delete(\Illuminate\Foundation\Auth\User $user)

@@ -1,6 +1,6 @@
 <?php
 
-use VictorBondaruk\Access\Features;
+use Victorbondaruk\Access\Features;
 
 return [
     'stack' => 'inertia',

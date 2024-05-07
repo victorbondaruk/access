@@ -1,6 +1,6 @@
 <?php
 
-namespace VictorBondaruk\Access\Console;
+namespace Victorbondaruk\Access\Console;
 
 use Exception;
 use Illuminate\Console\Command;
@@ -29,7 +29,7 @@ class InstallCommand extends Command implements PromptsForMissingInput
      *
      * @var string
      */
-    protected $signature = 'access:install {stack : The development stack that should be installed (inertia)}
+    protected $signature = 'access:install {stack : The development stack that should be installed (inertia,livewire)}
                                               {--dark : Indicate that dark mode support should be installed}
                                               {--teams : Indicates if team support should be installed}
                                               {--api : Indicates if API support should be installed}
@@ -52,8 +52,8 @@ class InstallCommand extends Command implements PromptsForMissingInput
      */
     public function handle()
     {
-        if (!in_array($this->argument('stack'), ['inertia'])) {
-            $this->components->error('Invalid stack. Supported stacks are [inertia].');
+        if (!in_array($this->argument('stack'), ['inertia', 'livewire'])) {
+            $this->components->error('Invalid stack. Supported stacks are [inertia] and [livewire].');
 
             return 1;
         }
@@ -93,7 +93,11 @@ class InstallCommand extends Command implements PromptsForMissingInput
         }
 
         // Install Stack...
-        if ($this->argument('stack') === 'inertia') {
+        if ($this->argument('stack') === 'livewire') {
+            if (!$this->installLivewireStack()) {
+                return 1;
+            }
+        } elseif ($this->argument('stack') === 'inertia') {
             if (!$this->installInertiaStack()) {
                 return 1;
             }
@@ -136,6 +140,192 @@ class InstallCommand extends Command implements PromptsForMissingInput
     {
         $this->replaceInFile('SESSION_DRIVER=cookie', 'SESSION_DRIVER=database', base_path('.env'));
         $this->replaceInFile('SESSION_DRIVER=cookie', 'SESSION_DRIVER=database', base_path('.env.example'));
+    }
+
+    /**
+     * Install the Livewire stack into the application.
+     *
+     * @return bool
+     */
+    protected function installLivewireStack()
+    {
+        // Install Livewire...
+        if (!$this->requireComposerPackages('livewire/livewire:^3.0')) {
+            return false;
+        }
+
+        $this->call('install:api', [
+            '--without-migration-prompt' => true,
+        ]);
+
+        // Update Configuration...
+        $this->replaceInFile('inertia', 'livewire', config_path('access.php'));
+
+        // NPM Packages...
+        $this->updateNodePackages(function ($packages) {
+            return [
+                '@tailwindcss/forms' => '^0.5.7',
+                '@tailwindcss/typography' => '^0.5.10',
+                'autoprefixer' => '^10.4.16',
+                'postcss' => '^8.4.32',
+                'tailwindcss' => '^3.4.0',
+            ] + $packages;
+        });
+
+        // Tailwind Configuration...
+        copy(__DIR__ . '/../../stubs/livewire/tailwind.config.js', base_path('tailwind.config.js'));
+        copy(__DIR__ . '/../../stubs/livewire/postcss.config.js', base_path('postcss.config.js'));
+        copy(__DIR__ . '/../../stubs/livewire/vite.config.js', base_path('vite.config.js'));
+
+        // Directories...
+        (new Filesystem)->ensureDirectoryExists(app_path('Actions/Fortify'));
+        (new Filesystem)->ensureDirectoryExists(app_path('Actions/Access'));
+        (new Filesystem)->ensureDirectoryExists(app_path('View/Components'));
+        (new Filesystem)->ensureDirectoryExists(resource_path('css'));
+        (new Filesystem)->ensureDirectoryExists(resource_path('markdown'));
+        (new Filesystem)->ensureDirectoryExists(resource_path('views/api'));
+        (new Filesystem)->ensureDirectoryExists(resource_path('views/auth'));
+        (new Filesystem)->ensureDirectoryExists(resource_path('views/components'));
+        (new Filesystem)->ensureDirectoryExists(resource_path('views/layouts'));
+        (new Filesystem)->ensureDirectoryExists(resource_path('views/profile'));
+
+        (new Filesystem)->deleteDirectory(resource_path('sass'));
+
+        // Terms Of Service / Privacy Policy...
+        copy(__DIR__ . '/../../stubs/resources/markdown/terms.md', resource_path('markdown/terms.md'));
+        copy(__DIR__ . '/../../stubs/resources/markdown/policy.md', resource_path('markdown/policy.md'));
+
+        // Service Providers...
+        copy(__DIR__ . '/../../stubs/app/Providers/AccessServiceProvider.php', app_path('Providers/AccessServiceProvider.php'));
+        ServiceProvider::addProviderToBootstrapFile('App\Providers\AccessServiceProvider');
+
+        // Models...
+        copy(__DIR__ . '/../../stubs/app/Models/User.php', app_path('Models/User.php'));
+
+        // Factories...
+        copy(__DIR__ . '/../../database/factories/UserFactory.php', base_path('database/factories/UserFactory.php'));
+
+        // Actions...
+        copy(__DIR__ . '/../../stubs/app/Actions/Fortify/CreateNewUser.php', app_path('Actions/Fortify/CreateNewUser.php'));
+        copy(__DIR__ . '/../../stubs/app/Actions/Fortify/UpdateUserProfileInformation.php', app_path('Actions/Fortify/UpdateUserProfileInformation.php'));
+        copy(__DIR__ . '/../../stubs/app/Actions/Access/DeleteUser.php', app_path('Actions/Access/DeleteUser.php'));
+
+        // Components...
+        (new Filesystem)->copyDirectory(__DIR__ . '/../../stubs/livewire/resources/views/components', resource_path('views/components'));
+
+        // View Components...
+        copy(__DIR__ . '/../../stubs/livewire/app/View/Components/AppLayout.php', app_path('View/Components/AppLayout.php'));
+        copy(__DIR__ . '/../../stubs/livewire/app/View/Components/GuestLayout.php', app_path('View/Components/GuestLayout.php'));
+
+        // Layouts...
+        (new Filesystem)->copyDirectory(__DIR__ . '/../../stubs/livewire/resources/views/layouts', resource_path('views/layouts'));
+
+        // Single Blade Views...
+        copy(__DIR__ . '/../../stubs/livewire/resources/views/dashboard.blade.php', resource_path('views/dashboard.blade.php'));
+        copy(__DIR__ . '/../../stubs/livewire/resources/views/navigation-menu.blade.php', resource_path('views/navigation-menu.blade.php'));
+        copy(__DIR__ . '/../../stubs/livewire/resources/views/terms.blade.php', resource_path('views/terms.blade.php'));
+        copy(__DIR__ . '/../../stubs/livewire/resources/views/policy.blade.php', resource_path('views/policy.blade.php'));
+
+        // Other Views...
+        (new Filesystem)->copyDirectory(__DIR__ . '/../../stubs/livewire/resources/views/api', resource_path('views/api'));
+        (new Filesystem)->copyDirectory(__DIR__ . '/../../stubs/livewire/resources/views/profile', resource_path('views/profile'));
+        (new Filesystem)->copyDirectory(__DIR__ . '/../../stubs/livewire/resources/views/auth', resource_path('views/auth'));
+
+        if (!Str::contains(file_get_contents(base_path('routes/web.php')), "'/dashboard'")) {
+            (new Filesystem)->append(base_path('routes/web.php'), $this->livewireRouteDefinition());
+        }
+
+        // Assets...
+        copy(__DIR__ . '/../../stubs/resources/css/app.css', resource_path('css/app.css'));
+
+        // Tests...
+        $stubs = $this->getTestStubsPath();
+
+        copy($stubs . '/livewire/ApiTokenPermissionsTest.php', base_path('tests/Feature/ApiTokenPermissionsTest.php'));
+        copy($stubs . '/livewire/BrowserSessionsTest.php', base_path('tests/Feature/BrowserSessionsTest.php'));
+        copy($stubs . '/livewire/CreateApiTokenTest.php', base_path('tests/Feature/CreateApiTokenTest.php'));
+        copy($stubs . '/livewire/DeleteAccountTest.php', base_path('tests/Feature/DeleteAccountTest.php'));
+        copy($stubs . '/livewire/DeleteApiTokenTest.php', base_path('tests/Feature/DeleteApiTokenTest.php'));
+        copy($stubs . '/livewire/ProfileInformationTest.php', base_path('tests/Feature/ProfileInformationTest.php'));
+        copy($stubs . '/livewire/TwoFactorAuthenticationSettingsTest.php', base_path('tests/Feature/TwoFactorAuthenticationSettingsTest.php'));
+        copy($stubs . '/livewire/UpdatePasswordTest.php', base_path('tests/Feature/UpdatePasswordTest.php'));
+
+        // Teams...
+        if ($this->option('teams')) {
+            $this->installLivewireTeamStack();
+        }
+
+        if (!$this->option('dark')) {
+            $this->removeDarkClasses((new Finder)
+                    ->in(resource_path('views'))
+                    ->name('*.blade.php')
+                    ->filter(fn ($file) => $file->getPathname() !== resource_path('views/welcome.blade.php'))
+            );
+        }
+
+        if (file_exists(base_path('pnpm-lock.yaml'))) {
+            $this->runCommands(['pnpm install', 'pnpm run build']);
+        } elseif (file_exists(base_path('yarn.lock'))) {
+            $this->runCommands(['yarn install', 'yarn run build']);
+        } else {
+            $this->runCommands(['npm install', 'npm run build']);
+        }
+
+        $this->line('');
+        $this->runDatabaseMigrations();
+
+        $this->components->info('Livewire scaffolding installed successfully.');
+
+        return true;
+    }
+
+    /**
+     * Install the Livewire team stack into the application.
+     *
+     * @return void
+     */
+    protected function installLivewireTeamStack()
+    {
+        // Directories...
+        (new Filesystem)->ensureDirectoryExists(resource_path('views/teams'));
+
+        // Other Views...
+        (new Filesystem)->copyDirectory(__DIR__ . '/../../stubs/livewire/resources/views/teams', resource_path('views/teams'));
+
+        // Tests...
+        $stubs = $this->getTestStubsPath();
+
+        copy($stubs . '/livewire/CreateTeamTest.php', base_path('tests/Feature/CreateTeamTest.php'));
+        copy($stubs . '/livewire/DeleteTeamTest.php', base_path('tests/Feature/DeleteTeamTest.php'));
+        copy($stubs . '/livewire/InviteTeamMemberTest.php', base_path('tests/Feature/InviteTeamMemberTest.php'));
+        copy($stubs . '/livewire/LeaveTeamTest.php', base_path('tests/Feature/LeaveTeamTest.php'));
+        copy($stubs . '/livewire/RemoveTeamMemberTest.php', base_path('tests/Feature/RemoveTeamMemberTest.php'));
+        copy($stubs . '/livewire/UpdateTeamMemberRoleTest.php', base_path('tests/Feature/UpdateTeamMemberRoleTest.php'));
+        copy($stubs . '/livewire/UpdateTeamNameTest.php', base_path('tests/Feature/UpdateTeamNameTest.php'));
+
+        $this->ensureApplicationIsTeamCompatible();
+    }
+
+    /**
+     * Get the route definition(s) that should be installed for Livewire.
+     *
+     * @return string
+     */
+    protected function livewireRouteDefinition()
+    {
+        return <<<'EOF'
+
+Route::middleware([
+    'auth:sanctum',
+    config('access.auth_session'),
+    'verified',
+])->group(function () {
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
+});
+
+EOF;
     }
 
     /**
@@ -640,6 +830,7 @@ class InstallCommand extends Command implements PromptsForMissingInput
                 label: 'Which Access stack would you like to install?',
                 options: [
                     'inertia' => 'Vue with Inertia',
+                    'livewire' => 'Livewire',
                 ]
             ),
         ];

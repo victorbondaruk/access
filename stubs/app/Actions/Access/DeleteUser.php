@@ -3,7 +3,7 @@
 namespace App\Actions\Access;
 
 use App\Models\User;
-use VictorBondaruk\Access\Contracts\DeletesUsers;
+use Victorbondaruk\Access\Contracts\DeletesUsers;
 
 class DeleteUser implements DeletesUsers
 {

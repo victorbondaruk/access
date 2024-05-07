@@ -29,6 +29,7 @@
     "require-dev": {
         "inertiajs/inertia-laravel": "^1.0",
         "laravel/sanctum": "^4.0",
+        "livewire/livewire": "^3.3",
         "mockery/mockery": "^1.0",
         "orchestra/testbench": "^9.0",
         "phpstan/phpstan": "^1.10",
@@ -36,26 +37,27 @@
     },
     "autoload": {
         "psr-4": {
-            "VictorBondaruk\\Access\\": "src/"
+            "Victorbondaruk\\Access\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "VictorBondaruk\\Access\\Tests\\": "tests/",
+            "Victorbondaruk\\Access\\Tests\\": "tests/",
             "App\\": "stubs/app/",
             "Database\\Factories\\": "database/factories/"
         }
     },
     "extra": {
-        "victorbondaruk": {
+        "laravel": {
             "providers": [
-                "VictorBondaruk\\Access\\AccessServiceProvider"
+                "Victorbondaruk\\Access\\AccessServiceProvider"
             ]
         }
     },
     "config": {
         "sort-packages": true
     },
-    "minimum-stability": "dev",
-    "prefer-stable": true
+    "minimum-stability": "stable",
+    "prefer-stable": true,
+    "version": "1.0.0"
 }

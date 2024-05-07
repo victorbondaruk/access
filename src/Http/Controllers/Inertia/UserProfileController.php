@@ -1,14 +1,14 @@
 <?php
 
-namespace VictorBondaruk\Access\Http\Controllers\Inertia;
+namespace Victorbondaruk\Access\Http\Controllers\Inertia;
 
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 use Laravel\Fortify\Features;
-use VictorBondaruk\Access\Agent;
-use VictorBondaruk\Access\Access;
+use Victorbondaruk\Access\Agent;
+use Victorbondaruk\Access\Access;
 
 class UserProfileController extends Controller
 {
@@ -67,7 +67,7 @@ class UserProfileController extends Controller
      * Create a new agent instance from the given session.
      *
      * @param  mixed  $session
-     * @return \VictorBondaruk\Access\Agent
+     * @return \Victorbondaruk\Access\Agent
      */
     protected function createAgent($session)
     {

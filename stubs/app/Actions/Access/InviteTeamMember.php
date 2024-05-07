@@ -10,11 +10,11 @@ use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
-use VictorBondaruk\Access\Contracts\InvitesTeamMembers;
-use VictorBondaruk\Access\Events\InvitingTeamMember;
-use VictorBondaruk\Access\Access;
-use VictorBondaruk\Access\Mail\TeamInvitation;
-use VictorBondaruk\Access\Rules\Role;
+use Victorbondaruk\Access\Contracts\InvitesTeamMembers;
+use Victorbondaruk\Access\Events\InvitingTeamMember;
+use Victorbondaruk\Access\Access;
+use Victorbondaruk\Access\Mail\TeamInvitation;
+use Victorbondaruk\Access\Rules\Role;
 
 class InviteTeamMember implements InvitesTeamMembers
 {

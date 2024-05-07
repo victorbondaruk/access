@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use VictorBondaruk\Access\Membership as AccessMembership;
+use Victorbondaruk\Access\Membership as AccessMembership;
 
 class Membership extends AccessMembership
 {

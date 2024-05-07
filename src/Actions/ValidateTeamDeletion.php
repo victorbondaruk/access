@@ -1,6 +1,6 @@
 <?php
 
-namespace VictorBondaruk\Access\Actions;
+namespace Victorbondaruk\Access\Actions;
 
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Validation\ValidationException;

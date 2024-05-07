@@ -3,10 +3,10 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use VictorBondaruk\Access\Events\TeamCreated;
-use VictorBondaruk\Access\Events\TeamDeleted;
-use VictorBondaruk\Access\Events\TeamUpdated;
-use VictorBondaruk\Access\Team as AccessTeam;
+use Victorbondaruk\Access\Events\TeamCreated;
+use Victorbondaruk\Access\Events\TeamDeleted;
+use Victorbondaruk\Access\Events\TeamUpdated;
+use Victorbondaruk\Access\Team as AccessTeam;
 
 class Team extends AccessTeam
 {

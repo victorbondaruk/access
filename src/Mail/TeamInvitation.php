@@ -1,12 +1,12 @@
 <?php
 
-namespace VictorBondaruk\Access\Mail;
+namespace Victorbondaruk\Access\Mail;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\URL;
-use VictorBondaruk\Access\TeamInvitation as TeamInvitationModel;
+use Victorbondaruk\Access\TeamInvitation as TeamInvitationModel;
 
 class TeamInvitation extends Mailable
 {
@@ -15,14 +15,14 @@ class TeamInvitation extends Mailable
     /**
      * The team invitation instance.
      *
-     * @var \VictorBondaruk\Access\TeamInvitation
+     * @var \Victorbondaruk\Access\TeamInvitation
      */
     public $invitation;
 
     /**
      * Create a new message instance.
      *
-     * @param  \VictorBondaruk\Access\TeamInvitation  $invitation
+     * @param  \Victorbondaruk\Access\TeamInvitation  $invitation
      * @return void
      */
     public function __construct(TeamInvitationModel $invitation)

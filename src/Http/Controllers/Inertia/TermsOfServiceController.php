@@ -1,12 +1,12 @@
 <?php
 
-namespace VictorBondaruk\Access\Http\Controllers\Inertia;
+namespace Victorbondaruk\Access\Http\Controllers\Inertia;
 
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Str;
 use Inertia\Inertia;
-use VictorBondaruk\Access\Access;
+use Victorbondaruk\Access\Access;
 
 class TermsOfServiceController extends Controller
 {

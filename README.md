@@ -1,76 +1,42 @@
-{
-    "name": "laravel/laravel",
-    "type": "project",
-    "description": "The skeleton application for the Laravel framework.",
-    "keywords": [
-        "laravel",
-        "framework"
-    ],
-    "license": "MIT",
-    "repositories": [
-        {
-            "type": "path",
-            "url": "packages/*/*"
-        }
-    ],
-    "require": {
-        "php": "^8.2",
-        "laravel/framework": "^11.0",
-        "laravel/tinker": "^2.9",
-        "victorbondaruk/access": "*"
-    },
-    "require-dev": {
-        "fakerphp/faker": "^1.23",
-        "laravel/pint": "^1.13",
-        "laravel/sail": "^1.26",
-        "mockery/mockery": "^1.6",
-        "nunomaduro/collision": "^8.0",
-        "phpunit/phpunit": "^11.0.1",
-        "spatie/laravel-ignition": "^2.4"
-    },
-    "autoload": {
-        "psr-4": {
-            "App\\": "app/",
-            "Database\\Factories\\": "database/factories/",
-            "Database\\Seeders\\": "database/seeders/"
-        }
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "Tests\\": "tests/"
-        }
-    },
-    "scripts": {
-        "post-autoload-dump": [
-            "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
-            "@php artisan package:discover --ansi"
-        ],
-        "post-update-cmd": [
-            "@php artisan vendor:publish --tag=laravel-assets --ansi --force"
-        ],
-        "post-root-package-install": [
-            "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
-        ],
-        "post-create-project-cmd": [
-            "@php artisan key:generate --ansi",
-            "@php -r \"file_exists('database/database.sqlite') || touch('database/database.sqlite');\"",
-            "@php artisan migrate --graceful --ansi"
-        ]
-    },
-    "extra": {
-        "laravel": {
-            "dont-discover": []
-        }
-    },
-    "config": {
-        "optimize-autoloader": true,
-        "preferred-install": "dist",
-        "sort-packages": true,
-        "allow-plugins": {
-            "pestphp/pest-plugin": true,
-            "php-http/discovery": true
-        }
-    },
-    "minimum-stability": "stable",
-    "prefer-stable": true
-}
+<p align="center"><img src="/art/logo.svg" alt="Logo Laravel Access"></p>
+
+<p align="center">
+    <a href="https://github.com/victorbondaruk/access/actions">
+        <img src="https://github.com/victorbondaruk/access/workflows/tests/badge.svg" alt="Build Status">
+    </a>
+    <a href="https://packagist.org/packages/victorbondaruk/access">
+        <img src="https://img.shields.io/packagist/dt/victorbondaruk/access" alt="Total Downloads">
+    </a>
+    <a href="https://packagist.org/packages/victorbondaruk/access">
+        <img src="https://img.shields.io/packagist/v/victorbondaruk/access" alt="Latest Stable Version">
+    </a>
+    <a href="https://packagist.org/packages/victorbondaruk/access">
+        <img src="https://img.shields.io/packagist/l/victorbondaruk/access" alt="License">
+    </a>
+</p>
+
+## Introduction
+
+Laravel Access is a beautifully designed application scaffolding for Laravel. Access provides the perfect starting point for your next Laravel application and includes login, registration, email verification, two-factor authentication, session management, API support via [Laravel Sanctum](https://github.com/laravel/sanctum), and optional team management.
+
+Access is designed using [Tailwind CSS](https://tailwindcss.com) and offers your choice of [Livewire](https://access.victorbondaruk.com/stacks/livewire.html) or [Inertia](https://access.victorbondaruk.com/stacks/inertia.html) scaffolding.
+
+## Official Documentation
+
+Documentation for Access can be found on the [Access website](https://access.victorbondaruk.com).
+
+## Contributing
+
+Thank you for considering contributing to Access! You can read the contribution guide [here](.github/CONTRIBUTING.md).
+
+## Code of Conduct
+
+In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+
+## Security Vulnerabilities
+
+Please review [our security policy](https://github.com/victorbondaruk/access/security/policy) on how to report security vulnerabilities.
+
+## License
+
+Laravel Access is open-sourced software licensed under the [MIT license](LICENSE.md).

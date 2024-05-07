@@ -1,6 +1,6 @@
 <?php
 
-namespace VictorBondaruk\Access\Http\Middleware;
+namespace Victorbondaruk\Access\Http\Middleware;
 
 use Illuminate\Contracts\Auth\StatefulGuard;
 use Illuminate\Session\Middleware\AuthenticateSession as BaseAuthenticateSession;

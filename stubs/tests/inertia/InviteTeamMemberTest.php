@@ -5,8 +5,8 @@ namespace Tests\Feature;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Mail;
-use VictorBondaruk\Access\Features;
-use VictorBondaruk\Access\Mail\TeamInvitation;
+use Victorbondaruk\Access\Features;
+use Victorbondaruk\Access\Mail\TeamInvitation;
 use Tests\TestCase;
 
 class InviteTeamMemberTest extends TestCase
