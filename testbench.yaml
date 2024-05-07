@@ -1,0 +1,10 @@
+providers:
+  - Laravel\Fortify\FortifyServiceProvider
+  - VictorBondaruk\Access\AccessServiceProvider
+
+migrations:
+  - database/migrations
+  - vendor/laravel/fortify/database/migrations
+
+workbench:
+  install: false
