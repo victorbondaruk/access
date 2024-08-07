@@ -11,7 +11,7 @@
 
 #### Dependency Versions
 
-You should upgrade your `laravel/jetstream` dependency to `^5.0` within your application's `composer.json` file. Then, run the `composer update` command:
+You should upgrade your `victorbondaruk/access` dependency to `^5.0` within your application's `composer.json` file. Then, run the `composer update` command:
 
     composer update
 
@@ -27,7 +27,7 @@ You should upgrade your `laravel/jetstream` dependency to `^5.0` within your app
 
 #### Dependency Versions
 
-You should upgrade your `laravel/jetstream` dependency to `^4.0` within your application's `composer.json` file. Then, run the `composer update` command:
+You should upgrade your `victorbondaruk/access` dependency to `^4.0` within your application's `composer.json` file. Then, run the `composer update` command:
 
     composer update
 
@@ -76,7 +76,7 @@ You should include `@livewireStyles` and `@livewireScripts` in your application'
 
 #### Dependency Versions
 
-Next, you should upgrade your `laravel/jetstream` dependency to `^3.0` within your application's `composer.json` file and run the `composer update` command:
+Next, you should upgrade your `victorbondaruk/access` dependency to `^3.0` within your application's `composer.json` file and run the `composer update` command:
 
     composer update
 
@@ -153,13 +153,13 @@ Before upgrading, you should publish all of Access's views using the `vendor:pub
 
 #### Dependency Versions
 
-Next, you should upgrade your `laravel/jetstream` dependency to `^2.0` within your application's `composer.json` file and run the `composer update` command:
+Next, you should upgrade your `victorbondaruk/access` dependency to `^2.0` within your application's `composer.json` file and run the `composer update` command:
 
     composer update
 
 #### New Access Actions
 
-You should place the new [RemoveTeamMember](https://github.com/laravel/jetstream/blob/2.x/stubs/app/Actions/Access/RemoveTeamMember.php) and [InviteTeamMember](https://github.com/laravel/jetstream/blob/2.x/stubs/app/Actions/Access/InviteTeamMember.php) actions within your application's `app/Actions/Access` directory.
+You should place the new [RemoveTeamMember](https://github.com/victorbondaruk/access/blob/2.x/stubs/app/Actions/Access/RemoveTeamMember.php) and [InviteTeamMember](https://github.com/victorbondaruk/access/blob/2.x/stubs/app/Actions/Access/InviteTeamMember.php) actions within your application's `app/Actions/Access` directory.
 
 In addition, you should register these actions with Access by adding the following code to the `boot` method of your application's `AccessServiceProvider`:
 
@@ -173,7 +173,7 @@ Access::removeTeamMembersUsing(RemoveTeamMember::class);
 
 #### Team Invitation Model
 
-You should place the new [TeamInvitation](https://github.com/laravel/jetstream/blob/2.x/stubs/app/Models/TeamInvitation.php) model within your application's `app/Models` directory.
+You should place the new [TeamInvitation](https://github.com/victorbondaruk/access/blob/2.x/stubs/app/Models/TeamInvitation.php) model within your application's `app/Models` directory.
 
 In addition, you should create a `team_invitations` database migration:
 
