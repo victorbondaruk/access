@@ -16,8 +16,8 @@ class CurrentTeamControllerTest extends OrchestraTestCase
         parent::defineEnvironment($app);
 
         $app['config']->set([
-            'jetstream.stack' => 'livewire',
-            'jetstream.features' => ['teams'],
+            'access.stack' => 'livewire',
+            'access.features' => ['teams'],
         ]);
 
         Gate::policy(Team::class, TeamPolicy::class);

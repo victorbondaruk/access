@@ -15,7 +15,7 @@ class UserProfileControllerTest extends OrchestraTestCase
         parent::defineEnvironment($app);
 
         $app['config']->set([
-            'jetstream.stack' => 'inertia',
+            'access.stack' => 'inertia',
             'fortify.features' => [
                 Features::registration(),
                 Features::resetPasswords(),

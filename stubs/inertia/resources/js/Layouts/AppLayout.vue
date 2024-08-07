@@ -57,7 +57,7 @@ const logout = () => {
                         <div class="hidden sm:flex sm:items-center sm:ms-6">
                             <div class="ms-3 relative">
                                 <!-- Teams Dropdown -->
-                                <Dropdown v-if="$page.props.jetstream.hasTeamFeatures" align="right" width="60">
+                                <Dropdown v-if="$page.props.access.hasTeamFeatures" align="right" width="60">
                                     <template #trigger>
                                         <span class="inline-flex rounded-md">
                                             <button type="button" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none focus:bg-gray-50 dark:focus:bg-gray-700 active:bg-gray-50 dark:active:bg-gray-700 transition ease-in-out duration-150">
@@ -82,7 +82,7 @@ const logout = () => {
                                                 Team Settings
                                             </DropdownLink>
 
-                                            <DropdownLink v-if="$page.props.jetstream.canCreateTeams" :href="route('teams.create')">
+                                            <DropdownLink v-if="$page.props.access.canCreateTeams" :href="route('teams.create')">
                                                 Create New Team
                                             </DropdownLink>
 
@@ -117,7 +117,7 @@ const logout = () => {
                             <div class="ms-3 relative">
                                 <Dropdown align="right" width="48">
                                     <template #trigger>
-                                        <button v-if="$page.props.jetstream.managesProfilePhotos" class="flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300 transition">
+                                        <button v-if="$page.props.access.managesProfilePhotos" class="flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300 transition">
                                             <img class="h-8 w-8 rounded-full object-cover" :src="$page.props.auth.user.profile_photo_url" :alt="$page.props.auth.user.name">
                                         </button>
 
@@ -142,7 +142,7 @@ const logout = () => {
                                             Profile
                                         </DropdownLink>
 
-                                        <DropdownLink v-if="$page.props.jetstream.hasApiFeatures" :href="route('api-tokens.index')">
+                                        <DropdownLink v-if="$page.props.access.hasApiFeatures" :href="route('api-tokens.index')">
                                             API Tokens
                                         </DropdownLink>
 
@@ -199,7 +199,7 @@ const logout = () => {
                     <!-- Responsive Settings Options -->
                     <div class="pt-4 pb-1 border-t border-gray-200 dark:border-gray-600">
                         <div class="flex items-center px-4">
-                            <div v-if="$page.props.jetstream.managesProfilePhotos" class="shrink-0 me-3">
+                            <div v-if="$page.props.access.managesProfilePhotos" class="shrink-0 me-3">
                                 <img class="h-10 w-10 rounded-full object-cover" :src="$page.props.auth.user.profile_photo_url" :alt="$page.props.auth.user.name">
                             </div>
 
@@ -218,7 +218,7 @@ const logout = () => {
                                 Profile
                             </ResponsiveNavLink>
 
-                            <ResponsiveNavLink v-if="$page.props.jetstream.hasApiFeatures" :href="route('api-tokens.index')" :active="route().current('api-tokens.index')">
+                            <ResponsiveNavLink v-if="$page.props.access.hasApiFeatures" :href="route('api-tokens.index')" :active="route().current('api-tokens.index')">
                                 API Tokens
                             </ResponsiveNavLink>
 
@@ -230,7 +230,7 @@ const logout = () => {
                             </form>
 
                             <!-- Team Management -->
-                            <template v-if="$page.props.jetstream.hasTeamFeatures">
+                            <template v-if="$page.props.access.hasTeamFeatures">
                                 <div class="border-t border-gray-200 dark:border-gray-600" />
 
                                 <div class="block px-4 py-2 text-xs text-gray-400">
@@ -242,7 +242,7 @@ const logout = () => {
                                     Team Settings
                                 </ResponsiveNavLink>
 
-                                <ResponsiveNavLink v-if="$page.props.jetstream.canCreateTeams" :href="route('teams.create')" :active="route().current('teams.create')">
+                                <ResponsiveNavLink v-if="$page.props.access.canCreateTeams" :href="route('teams.create')" :active="route().current('teams.create')">
                                     Create New Team
                                 </ResponsiveNavLink>
 

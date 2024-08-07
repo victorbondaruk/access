@@ -16,8 +16,8 @@ class TeamMemberControllerTest extends OrchestraTestCase
     {
         parent::defineEnvironment($app);
 
-        $app['config']->set('jetstream.stack', 'inertia');
-        $app['config']->set('jetstream.features', ['teams']);
+        $app['config']->set('access.stack', 'inertia');
+        $app['config']->set('access.features', ['teams']);
 
         Gate::policy(Team::class, TeamPolicy::class);
         Access::useUserModel(User::class);

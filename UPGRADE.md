@@ -5,7 +5,7 @@
 > **Note**
 > This upgrade guide only discusses upgrading to Access 5.x. Upgrading your Laravel, Tailwind, Livewire, or Inertia installations is outside the scope of this documentation and may not be strictly required in order to use Access 5.x. Please consult the upgrade guides for those libraries for information on their upgrade process.
 
--   [Changes Common To Both Stacks](#jetstream-5x-changes-common-to-both-stacks)
+-   [Changes Common To Both Stacks](#access-5x-changes-common-to-both-stacks)
 
 ### Access 5.x Changes Common To Both Stacks
 
@@ -20,8 +20,8 @@ You should upgrade your `victorbondaruk/access` dependency to `^5.0` within your
 > **Note**
 > This upgrade guide only discusses upgrading to Access 4.x. Upgrading your Laravel, Tailwind, Livewire, or Inertia installations is outside the scope of this documentation and is not strictly required in order to use Access 4.x. Please consult the upgrade guides for those libraries for information on their upgrade process.
 
--   [Changes Common To Both Stacks](#jetstream-4x-changes-common-to-both-stacks)
--   [Livewire Stack Upgrade Guide](#jetstream-4x-livewire-stack)
+-   [Changes Common To Both Stacks](#access-4x-changes-common-to-both-stacks)
+-   [Livewire Stack Upgrade Guide](#access-4x-livewire-stack)
 
 ### Access 4.x Changes Common To Both Stacks
 
@@ -62,9 +62,9 @@ You should include `@livewireStyles` and `@livewireScripts` in your application'
 > **Note**
 > This upgrade guide only discusses upgrading to Access 3.x. Upgrading your Laravel, Tailwind, Livewire, or Inertia installations is outside the scope of this documentation and is not strictly required in order to use Access 3.x. Please consult the upgrade guides for those libraries for information on their upgrade process.
 
--   [Changes Common To Both Stacks](#jetstream-3x-changes-common-to-both-stacks)
--   [Livewire Stack Upgrade Guide](#jetstream-3x-livewire-stack)
--   [Inertia Stack Upgrade Guide](#jetstream-3x-inertia-stack)
+-   [Changes Common To Both Stacks](#access-3x-changes-common-to-both-stacks)
+-   [Livewire Stack Upgrade Guide](#access-3x-livewire-stack)
+-   [Inertia Stack Upgrade Guide](#access-3x-inertia-stack)
 
 ### Access 3.x Changes Common To Both Stacks
 
@@ -72,7 +72,7 @@ You should include `@livewireStyles` and `@livewireScripts` in your application'
 
 **Before upgrading**, you should publish all of Access's views using the `vendor:publish` Artisan command. You may skip this step if you have already published Access's views:
 
-    php artisan vendor:publish --tag=jetstream-views
+    php artisan vendor:publish --tag=access-views
 
 #### Dependency Versions
 
@@ -84,9 +84,9 @@ Next, you should upgrade your `victorbondaruk/access` dependency to `^3.0` withi
 
 #### Views
 
-You should move the published Access components from `resources/views/vendor/jetstream/components` to `resources/views/components`.
+You should move the published Access components from `resources/views/vendor/access/components` to `resources/views/components`.
 
-You should also move the published Access mail views from `resources/views/vendor/jetstream/mail` to `resources/views/emails`, taking care to note the new directory name of `emails` instead of `mail`.
+You should also move the published Access mail views from `resources/views/vendor/access/mail` to `resources/views/emails`, taking care to note the new directory name of `emails` instead of `mail`.
 
 Next, you should remove all references to the `jet-` prefix from your views. For example:
 
@@ -109,7 +109,7 @@ Finally, clear your view cache:
 
 #### Mail Views
 
-You should move the published Access mail views from `resources/views/vendor/jetstream/mail` to `resources/views/emails`, taking care to note the new directory name of `emails` instead of `mail`.
+You should move the published Access mail views from `resources/views/vendor/access/mail` to `resources/views/emails`, taking care to note the new directory name of `emails` instead of `mail`.
 
 Next, clear your view cache:
 
@@ -149,7 +149,7 @@ For example:
 
 Before upgrading, you should publish all of Access's views using the `vendor:publish` Artisan command. You may skip this step if you have already published Access's views:
 
-    php artisan vendor:publish --tag=jetstream-views
+    php artisan vendor:publish --tag=access-views
 
 #### Dependency Versions
 
@@ -230,7 +230,7 @@ Rename the `resources/views/navigation-dropdown.blade.php` file to `navigation-m
 
 Access 2.0's Inertia stack uses Vue based authentication pages. In order to use the new Vue based authentication pages, you will need to publish them using the `vendor:publish` Artisan command:
 
-    php artisan vendor:publish --tag=jetstream-inertia-auth-pages
+    php artisan vendor:publish --tag=access-inertia-auth-pages
 
 Or, if you wish to to continue to render your Blade based authentication views in Access 2.x, you should add the following code to the `boot` method of your application's `AccessServiceProvider` class:
 
@@ -278,12 +278,12 @@ Fortify::confirmPasswordView(function () {
 });
 ```
 
-#### Remove [laravel-jetstream](https://www.npmjs.com/package/laravel-jetstream) NPM Package
+#### Remove [victorbondaruk-access](https://www.npmjs.com/package/victorbondaruk-access) NPM Package
 
 As of the Access 2.0 release, this library is no longer necessary as all of its features have been incorporated into Inertia itself. You should remove the following from your `resources/js/app.js` file:
 
 ```
-import {InertiaForm} from 'laravel-jetstream';
+import {InertiaForm} from 'victorbondaruk-access';
 
 Vue.use(InertiaForm);
 
@@ -291,4 +291,4 @@ Vue.use(InertiaForm);
 
 Finally, you may remove the package:
 
-`npm uninstall laravel-jetstream`
+`npm uninstall victorbondaruk-access`

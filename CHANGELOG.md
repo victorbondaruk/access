@@ -250,7 +250,7 @@
 
 ### Fixed
 
--   Fixes publishing jetstream-inertia-auth-pages, that was referencing an old stub path by @juse-less in https://github.com/victorbondaruk/access/pull/1210
+-   Fixes publishing access-inertia-auth-pages, that was referencing an old stub path by @juse-less in https://github.com/victorbondaruk/access/pull/1210
 -   Prevent `MissingAttributeException` by @jessarcher in https://github.com/victorbondaruk/access/pull/1213
 
 ## [v2.14.0](https://github.com/victorbondaruk/access/compare/v2.13.1...v2.14.0) - 2023-01-03
@@ -377,7 +377,7 @@
 
 ### Changed
 
--   Add default view / routes reloading to jetstream stacks by @timacdonald in https://github.com/victorbondaruk/access/pull/1080
+-   Add default view / routes reloading to access stacks by @timacdonald in https://github.com/victorbondaruk/access/pull/1080
 -   Update SSR directory by @jessarcher in https://github.com/victorbondaruk/access/pull/1084
 -   Add livewire component paths to default refresh paths for livewire stack by @timacdonald in https://github.com/victorbondaruk/access/pull/1081
 
@@ -920,8 +920,6 @@
 -   Inertia Stack Authentication Page logo link update with inertia-link ([#594](https://github.com/victorbondaruk/access/pull/594))
 
 ## [v2.0.0 (2021-01-05)](https://github.com/victorbondaruk/access/compare/v1.6.6...v2.0.0)
-
-A major new Access release. Check out [the announcement post](https://blog.laravel.com/jetstream-20-released).
 
 ## [v1.6.6 (2021-01-05)](https://github.com/victorbondaruk/access/compare/v1.6.5...v1.6.6)
 

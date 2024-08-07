@@ -21,7 +21,7 @@ use function Laravel\Prompts\confirm;
 use function Laravel\Prompts\multiselect;
 use function Laravel\Prompts\select;
 
-#[AsCommand(name: 'jetstream:install')]
+#[AsCommand(name: 'access:install')]
 class InstallCommand extends Command implements PromptsForMissingInput
 {
     /**
@@ -29,7 +29,7 @@ class InstallCommand extends Command implements PromptsForMissingInput
      *
      * @var string
      */
-    protected $signature = 'jetstream:install {stack : The development stack that should be installed (inertia,livewire)}
+    protected $signature = 'access:install {stack : The development stack that should be installed (inertia,livewire)}
                                               {--dark : Indicate that dark mode support should be installed}
                                               {--teams : Indicates if team support should be installed}
                                               {--api : Indicates if API support should be installed}
@@ -59,8 +59,8 @@ class InstallCommand extends Command implements PromptsForMissingInput
         }
 
         // Publish...
-        $this->callSilent('vendor:publish', ['--tag' => 'jetstream-config', '--force' => true]);
-        $this->callSilent('vendor:publish', ['--tag' => 'jetstream-migrations', '--force' => true]);
+        $this->callSilent('vendor:publish', ['--tag' => 'access-config', '--force' => true]);
+        $this->callSilent('vendor:publish', ['--tag' => 'access-migrations', '--force' => true]);
 
         $this->callSilent('vendor:publish', ['--tag' => 'fortify-config', '--force' => true]);
         $this->callSilent('vendor:publish', ['--tag' => 'fortify-support', '--force' => true]);
@@ -84,7 +84,7 @@ class InstallCommand extends Command implements PromptsForMissingInput
 
         // Configure API...
         if ($this->option('api')) {
-            $this->replaceInFile('// Features::api(),', 'Features::api(),', config_path('jetstream.php'));
+            $this->replaceInFile('// Features::api(),', 'Features::api(),', config_path('access.php'));
         }
 
         // Configure Email Verification...
@@ -159,7 +159,7 @@ class InstallCommand extends Command implements PromptsForMissingInput
         ]);
 
         // Update Configuration...
-        $this->replaceInFile('inertia', 'livewire', config_path('jetstream.php'));
+        $this->replaceInFile('inertia', 'livewire', config_path('access.php'));
 
         // NPM Packages...
         $this->updateNodePackages(function ($packages) {
@@ -317,7 +317,7 @@ class InstallCommand extends Command implements PromptsForMissingInput
 
 Route::middleware([
     'auth:sanctum',
-    config('jetstream.auth_session'),
+    config('access.auth_session'),
     'verified',
 ])->group(function () {
     Route::get('/dashboard', function () {
@@ -518,10 +518,10 @@ EOF;
     protected function ensureApplicationIsTeamCompatible()
     {
         // Publish Team Migrations...
-        $this->callSilent('vendor:publish', ['--tag' => 'jetstream-team-migrations', '--force' => true]);
+        $this->callSilent('vendor:publish', ['--tag' => 'access-team-migrations', '--force' => true]);
 
         // Configuration...
-        $this->replaceInFile('// Features::teams([\'invitations\' => true])', 'Features::teams([\'invitations\' => true])', config_path('jetstream.php'));
+        $this->replaceInFile('// Features::teams([\'invitations\' => true])', 'Features::teams([\'invitations\' => true])', config_path('access.php'));
 
         // Directories...
         (new Filesystem)->ensureDirectoryExists(app_path('Actions/Access'));

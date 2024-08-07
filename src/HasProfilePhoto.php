@@ -20,7 +20,8 @@ trait HasProfilePhoto
         tap($this->profile_photo_path, function ($previous) use ($photo, $storagePath) {
             $this->forceFill([
                 'profile_photo_path' => $photo->storePublicly(
-                    $storagePath, ['disk' => $this->profilePhotoDisk()]
+                    $storagePath,
+                    ['disk' => $this->profilePhotoDisk()]
                 ),
             ])->save();
 
@@ -37,7 +38,7 @@ trait HasProfilePhoto
      */
     public function deleteProfilePhoto()
     {
-        if (! Features::managesProfilePhotos()) {
+        if (!Features::managesProfilePhotos()) {
             return;
         }
 
@@ -61,8 +62,8 @@ trait HasProfilePhoto
     {
         return Attribute::get(function (): string {
             return $this->profile_photo_path
-                    ? Storage::disk($this->profilePhotoDisk())->url($this->profile_photo_path)
-                    : $this->defaultProfilePhotoUrl();
+                ? Storage::disk($this->profilePhotoDisk())->url($this->profile_photo_path)
+                : $this->defaultProfilePhotoUrl();
         });
     }
 
@@ -77,7 +78,7 @@ trait HasProfilePhoto
             return mb_substr($segment, 0, 1);
         })->join(' '));
 
-        return 'https://ui-avatars.com/api/?name='.urlencode($name).'&color=7F9CF5&background=EBF4FF';
+        return 'https://ui-avatars.com/api/?name=' . urlencode($name) . '&color=7F9CF5&background=EBF4FF';
     }
 
     /**
@@ -87,6 +88,6 @@ trait HasProfilePhoto
      */
     protected function profilePhotoDisk()
     {
-        return isset($_ENV['VAPOR_ARTIFACT_NAME']) ? 's3' : config('jetstream.profile_photo_disk', 'public');
+        return isset($_ENV['VAPOR_ARTIFACT_NAME']) ? 's3' : config('access.profile_photo_disk', 'public');
     }
 }

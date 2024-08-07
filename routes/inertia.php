@@ -14,18 +14,18 @@ use Victorbondaruk\Access\Http\Controllers\Inertia\UserProfileController;
 use Victorbondaruk\Access\Http\Controllers\TeamInvitationController;
 use Victorbondaruk\Access\Access;
 
-Route::group(['middleware' => config('jetstream.middleware', ['web'])], function () {
+Route::group(['middleware' => config('access.middleware', ['web'])], function () {
     if (Access::hasTermsAndPrivacyPolicyFeature()) {
         Route::get('/terms-of-service', [TermsOfServiceController::class, 'show'])->name('terms.show');
         Route::get('/privacy-policy', [PrivacyPolicyController::class, 'show'])->name('policy.show');
     }
 
-    $authMiddleware = config('jetstream.guard')
-        ? 'auth:' . config('jetstream.guard')
+    $authMiddleware = config('access.guard')
+        ? 'auth:' . config('access.guard')
         : 'auth';
 
-    $authSessionMiddleware = config('jetstream.auth_session', false)
-        ? config('jetstream.auth_session')
+    $authSessionMiddleware = config('access.auth_session', false)
+        ? config('access.auth_session')
         : null;
 
     Route::group(['middleware' => array_values(array_filter([$authMiddleware, $authSessionMiddleware]))], function () {

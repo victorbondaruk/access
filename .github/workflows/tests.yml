@@ -67,17 +67,17 @@ jobs:
         run: |
           composer create-project laravel/laravel:^${{ matrix.laravel }} .
           composer require victorbondaruk/access:@dev --no-interaction --no-update
-          composer config repositories.jetstream '{"type": "path", "url": "jetstream"}' --file composer.json
+          composer config repositories.access '{"type": "path", "url": "access"}' --file composer.json
 
       - name: Checkout code
         uses: actions/checkout@v3
         with:
-          path: 'jetstream'
+          path: 'access'
 
       - name: Install Access
         run: |
           composer update "victorbondaruk/access" --prefer-dist --no-interaction --no-progress -W
-          php artisan jetstream:install ${{ matrix.stack }} --teams --api --verification --pest
+          php artisan access:install ${{ matrix.stack }} --teams --api --verification --pest
 
       - name: Install NPM dependencies
         run: npm i

@@ -37,7 +37,7 @@ class AccessServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->mergeConfigFrom(__DIR__ . '/../config/jetstream.php', 'jetstream');
+        $this->mergeConfigFrom(__DIR__ . '/../config/access.php', 'access');
     }
 
     /**
@@ -77,11 +77,11 @@ class AccessServiceProvider extends ServiceProvider
             ]);
         });
 
-        if (config('jetstream.stack') === 'inertia' && class_exists(Inertia::class)) {
+        if (config('access.stack') === 'inertia' && class_exists(Inertia::class)) {
             $this->bootInertia();
         }
 
-        if (config('jetstream.stack') === 'livewire' && class_exists(Livewire::class)) {
+        if (config('access.stack') === 'livewire' && class_exists(Livewire::class)) {
             Livewire::component('navigation-menu', NavigationMenu::class);
             Livewire::component('profile.update-profile-information-form', UpdateProfileInformationForm::class);
             Livewire::component('profile.update-password-form', UpdatePasswordForm::class);
@@ -114,29 +114,29 @@ class AccessServiceProvider extends ServiceProvider
         }
 
         $this->publishes([
-            __DIR__ . '/../stubs/config/jetstream.php' => config_path('jetstream.php'),
-        ], 'jetstream-config');
+            __DIR__ . '/../stubs/config/access.php' => config_path('access.php'),
+        ], 'access-config');
 
         $this->publishes([
             __DIR__ . '/../database/migrations/0001_01_01_000000_create_users_table.php' => database_path('migrations/0001_01_01_000000_create_users_table.php'),
-        ], 'jetstream-migrations');
+        ], 'access-migrations');
 
         $this->publishesMigrations([
             __DIR__ . '/../database/migrations/2020_05_21_100000_create_teams_table.php' => database_path('migrations/2020_05_21_100000_create_teams_table.php'),
             __DIR__ . '/../database/migrations/2020_05_21_200000_create_team_user_table.php' => database_path('migrations/2020_05_21_200000_create_team_user_table.php'),
             __DIR__ . '/../database/migrations/2020_05_21_300000_create_team_invitations_table.php' => database_path('migrations/2020_05_21_300000_create_team_invitations_table.php'),
-        ], 'jetstream-team-migrations');
+        ], 'access-team-migrations');
 
         $this->publishes([
-            __DIR__ . '/../routes/' . config('jetstream.stack') . '.php' => base_path('routes/jetstream.php'),
-        ], 'jetstream-routes');
+            __DIR__ . '/../routes/' . config('access.stack') . '.php' => base_path('routes/access.php'),
+        ], 'access-routes');
 
         $this->publishes([
             __DIR__ . '/../stubs/inertia/resources/js/Pages/Auth' => resource_path('js/Pages/Auth'),
             __DIR__ . '/../stubs/inertia/resources/js/Components/AuthenticationCard.vue' => resource_path('js/Components/AuthenticationCard.vue'),
             __DIR__ . '/../stubs/inertia/resources/js/Components/AuthenticationCardLogo.vue' => resource_path('js/Components/AuthenticationCardLogo.vue'),
             __DIR__ . '/../stubs/inertia/resources/js/Components/Checkbox.vue' => resource_path('js/Components/Checkbox.vue'),
-        ], 'jetstream-inertia-auth-pages');
+        ], 'access-inertia-auth-pages');
     }
 
     /**
@@ -149,10 +149,10 @@ class AccessServiceProvider extends ServiceProvider
         if (Access::$registersRoutes) {
             Route::group([
                 'namespace' => 'Victorbondaruk\Access\Http\Controllers',
-                'domain' => config('jetstream.domain', null),
-                'prefix' => config('jetstream.prefix', config('jetstream.path')),
+                'domain' => config('access.domain', null),
+                'prefix' => config('access.prefix', config('access.path')),
             ], function () {
-                $this->loadRoutesFrom(__DIR__ . '/../routes/' . config('jetstream.stack') . '.php');
+                $this->loadRoutesFrom(__DIR__ . '/../routes/' . config('access.stack') . '.php');
             });
         }
     }

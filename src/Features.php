@@ -12,7 +12,7 @@ class Features
      */
     public static function enabled(string $feature)
     {
-        return in_array($feature, config('jetstream.features', []));
+        return in_array($feature, config('access.features', []));
     }
 
     /**
@@ -25,7 +25,7 @@ class Features
     public static function optionEnabled(string $feature, string $option)
     {
         return static::enabled($feature) &&
-               config("jetstream-options.{$feature}.{$option}") === true;
+            config("access-options.{$feature}.{$option}") === true;
     }
 
     /**
@@ -116,8 +116,8 @@ class Features
      */
     public static function teams(array $options = [])
     {
-        if (! empty($options)) {
-            config(['jetstream-options.teams' => $options]);
+        if (!empty($options)) {
+            config(['access-options.teams' => $options]);
         }
 
         return 'teams';
