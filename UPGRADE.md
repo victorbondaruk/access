@@ -1,13 +1,13 @@
 # Upgrade Guide
 
-## Upgrading from Jetstream 4.x to Jetstream 5.x
+## Upgrading from Access 4.x to Access 5.x
 
 > **Note**
-> This upgrade guide only discusses upgrading to Jetstream 5.x. Upgrading your Laravel, Tailwind, Livewire, or Inertia installations is outside the scope of this documentation and may not be strictly required in order to use Jetstream 5.x. Please consult the upgrade guides for those libraries for information on their upgrade process.
+> This upgrade guide only discusses upgrading to Access 5.x. Upgrading your Laravel, Tailwind, Livewire, or Inertia installations is outside the scope of this documentation and may not be strictly required in order to use Access 5.x. Please consult the upgrade guides for those libraries for information on their upgrade process.
 
-- [Changes Common To Both Stacks](#jetstream-5x-changes-common-to-both-stacks)
+-   [Changes Common To Both Stacks](#jetstream-5x-changes-common-to-both-stacks)
 
-### Jetstream 5.x Changes Common To Both Stacks
+### Access 5.x Changes Common To Both Stacks
 
 #### Dependency Versions
 
@@ -15,15 +15,15 @@ You should upgrade your `laravel/jetstream` dependency to `^5.0` within your app
 
     composer update
 
-## Upgrading from Jetstream 3.x to Jetstream 4.x
+## Upgrading from Access 3.x to Access 4.x
 
 > **Note**
-> This upgrade guide only discusses upgrading to Jetstream 4.x. Upgrading your Laravel, Tailwind, Livewire, or Inertia installations is outside the scope of this documentation and is not strictly required in order to use Jetstream 4.x. Please consult the upgrade guides for those libraries for information on their upgrade process.
+> This upgrade guide only discusses upgrading to Access 4.x. Upgrading your Laravel, Tailwind, Livewire, or Inertia installations is outside the scope of this documentation and is not strictly required in order to use Access 4.x. Please consult the upgrade guides for those libraries for information on their upgrade process.
 
-- [Changes Common To Both Stacks](#jetstream-4x-changes-common-to-both-stacks)
-- [Livewire Stack Upgrade Guide](#jetstream-4x-livewire-stack)
+-   [Changes Common To Both Stacks](#jetstream-4x-changes-common-to-both-stacks)
+-   [Livewire Stack Upgrade Guide](#jetstream-4x-livewire-stack)
 
-### Jetstream 4.x Changes Common To Both Stacks
+### Access 4.x Changes Common To Both Stacks
 
 #### Dependency Versions
 
@@ -31,15 +31,15 @@ You should upgrade your `laravel/jetstream` dependency to `^4.0` within your app
 
     composer update
 
-### Jetstream 4.x Livewire Stack
+### Access 4.x Livewire Stack
 
-This upgrade guide assumes you have already upgraded your application to Livewire 3.x and ran the `php artisan livewire:upgrade` command against the views published by Jetstream.
+This upgrade guide assumes you have already upgraded your application to Livewire 3.x and ran the `php artisan livewire:upgrade` command against the views published by Access.
 
 #### Alpine Script
 
 As you may know, Livewire 3 ships with Alpine by default, so you do not need to include it in your application's `resources/js/app.js` file.
 
-You should include `@livewireStyles` and `@livewireScripts` in your application's `resources/views/layouts/guest.blade.php` file since Alpine is used by "guest" components published by Jetstream:
+You should include `@livewireStyles` and `@livewireScripts` in your application's `resources/views/layouts/guest.blade.php` file since Alpine is used by "guest" components published by Access:
 
 ```diff
         <!-- Scripts -->
@@ -57,20 +57,20 @@ You should include `@livewireStyles` and `@livewireScripts` in your application'
     </body>
 ```
 
-## Upgrading from Jetstream 2.x to Jetstream 3.x
+## Upgrading from Access 2.x to Access 3.x
 
 > **Note**
-> This upgrade guide only discusses upgrading to Jetstream 3.x. Upgrading your Laravel, Tailwind, Livewire, or Inertia installations is outside the scope of this documentation and is not strictly required in order to use Jetstream 3.x. Please consult the upgrade guides for those libraries for information on their upgrade process.
+> This upgrade guide only discusses upgrading to Access 3.x. Upgrading your Laravel, Tailwind, Livewire, or Inertia installations is outside the scope of this documentation and is not strictly required in order to use Access 3.x. Please consult the upgrade guides for those libraries for information on their upgrade process.
 
-- [Changes Common To Both Stacks](#jetstream-3x-changes-common-to-both-stacks)
-- [Livewire Stack Upgrade Guide](#jetstream-3x-livewire-stack)
-- [Inertia Stack Upgrade Guide](#jetstream-3x-inertia-stack)
+-   [Changes Common To Both Stacks](#jetstream-3x-changes-common-to-both-stacks)
+-   [Livewire Stack Upgrade Guide](#jetstream-3x-livewire-stack)
+-   [Inertia Stack Upgrade Guide](#jetstream-3x-inertia-stack)
 
-### Jetstream 3.x Changes Common To Both Stacks
+### Access 3.x Changes Common To Both Stacks
 
 #### Publish Views
 
-**Before upgrading**, you should publish all of Jetstream's views using the `vendor:publish` Artisan command. You may skip this step if you have already published Jetstream's views:
+**Before upgrading**, you should publish all of Access's views using the `vendor:publish` Artisan command. You may skip this step if you have already published Access's views:
 
     php artisan vendor:publish --tag=jetstream-views
 
@@ -80,13 +80,13 @@ Next, you should upgrade your `laravel/jetstream` dependency to `^3.0` within yo
 
     composer update
 
-### Jetstream 3.x Livewire Stack
+### Access 3.x Livewire Stack
 
 #### Views
 
-You should move the published Jetstream components from `resources/views/vendor/jetstream/components` to `resources/views/components`.
+You should move the published Access components from `resources/views/vendor/jetstream/components` to `resources/views/components`.
 
-You should also move the published Jetstream mail views from `resources/views/vendor/jetstream/mail` to `resources/views/emails`, taking care to note the new directory name of `emails` instead of `mail`.
+You should also move the published Access mail views from `resources/views/vendor/jetstream/mail` to `resources/views/emails`, taking care to note the new directory name of `emails` instead of `mail`.
 
 Next, you should remove all references to the `jet-` prefix from your views. For example:
 
@@ -105,11 +105,11 @@ Finally, clear your view cache:
 
     php artisan view:clear
 
-### Jetstream 3.x Inertia Stack
+### Access 3.x Inertia Stack
 
 #### Mail Views
 
-You should move the published Jetstream mail views from `resources/views/vendor/jetstream/mail` to `resources/views/emails`, taking care to note the new directory name of `emails` instead of `mail`.
+You should move the published Access mail views from `resources/views/vendor/jetstream/mail` to `resources/views/emails`, taking care to note the new directory name of `emails` instead of `mail`.
 
 Next, clear your view cache:
 
@@ -134,20 +134,20 @@ For example:
 + leaveTeamForm.delete(route('team-members.destroy', [props.team, usePage().props.value.auth.user]));
 ```
 
-## Upgrading From Jetstream 1.x To Jetstream 2.x
+## Upgrading From Access 1.x To Access 2.x
 
 > **Note**
-> This upgrade guide only discusses upgrading to Jetstream 2.x. Upgrading your Tailwind, Livewire or Inertia installations is outside the scope of this documentation and is not strictly required in order to use Jetstream 2.x. Please consult the upgrade guides for those libraries for information on their upgrade process.
+> This upgrade guide only discusses upgrading to Access 2.x. Upgrading your Tailwind, Livewire or Inertia installations is outside the scope of this documentation and is not strictly required in order to use Access 2.x. Please consult the upgrade guides for those libraries for information on their upgrade process.
 
-- [Changes Common To Both Stacks](#changes-common-to-both-stacks)
-- [Livewire Stack Upgrade Guide](#livewire-stack)
-- [Inertia Stack Upgrade Guide](#inertia-stack)
+-   [Changes Common To Both Stacks](#changes-common-to-both-stacks)
+-   [Livewire Stack Upgrade Guide](#livewire-stack)
+-   [Inertia Stack Upgrade Guide](#inertia-stack)
 
 ### Changes Common To Both Stacks
 
 #### Publish Views
 
-Before upgrading, you should publish all of Jetstream's views using the `vendor:publish` Artisan command. You may skip this step if you have already published Jetstream's views:
+Before upgrading, you should publish all of Access's views using the `vendor:publish` Artisan command. You may skip this step if you have already published Access's views:
 
     php artisan vendor:publish --tag=jetstream-views
 
@@ -157,18 +157,18 @@ Next, you should upgrade your `laravel/jetstream` dependency to `^2.0` within yo
 
     composer update
 
-#### New Jetstream Actions
+#### New Access Actions
 
-You should place the new [RemoveTeamMember](https://github.com/laravel/jetstream/blob/2.x/stubs/app/Actions/Jetstream/RemoveTeamMember.php) and [InviteTeamMember](https://github.com/laravel/jetstream/blob/2.x/stubs/app/Actions/Jetstream/InviteTeamMember.php) actions within your application's `app/Actions/Jetstream` directory.
+You should place the new [RemoveTeamMember](https://github.com/laravel/jetstream/blob/2.x/stubs/app/Actions/Access/RemoveTeamMember.php) and [InviteTeamMember](https://github.com/laravel/jetstream/blob/2.x/stubs/app/Actions/Access/InviteTeamMember.php) actions within your application's `app/Actions/Access` directory.
 
-In addition, you should register these actions with Jetstream by adding the following code to the `boot` method of your application's `JetstreamServiceProvider`:
+In addition, you should register these actions with Access by adding the following code to the `boot` method of your application's `AccessServiceProvider`:
 
 ```php
-use App\Actions\Jetstream\InviteTeamMember;
-use App\Actions\Jetstream\RemoveTeamMember;
+use App\Actions\Access\InviteTeamMember;
+use App\Actions\Access\RemoveTeamMember;
 
-Jetstream::inviteTeamMembersUsing(InviteTeamMember::class);
-Jetstream::removeTeamMembersUsing(RemoveTeamMember::class);
+Access::inviteTeamMembersUsing(InviteTeamMember::class);
+Access::removeTeamMembersUsing(RemoveTeamMember::class);
 ```
 
 #### Team Invitation Model
@@ -228,11 +228,11 @@ Rename the `resources/views/navigation-dropdown.blade.php` file to `navigation-m
 
 #### Authentication Views
 
-Jetstream 2.0's Inertia stack uses Vue based authentication pages. In order to use the new Vue based authentication pages, you will need to publish them using the `vendor:publish` Artisan command:
+Access 2.0's Inertia stack uses Vue based authentication pages. In order to use the new Vue based authentication pages, you will need to publish them using the `vendor:publish` Artisan command:
 
     php artisan vendor:publish --tag=jetstream-inertia-auth-pages
 
-Or, if you wish to to continue to render your Blade based authentication views in Jetstream 2.x, you should add the following code to the `boot` method of your application's `JetstreamServiceProvider` class:
+Or, if you wish to to continue to render your Blade based authentication views in Access 2.x, you should add the following code to the `boot` method of your application's `AccessServiceProvider` class:
 
 ```php
 use Illuminate\Http\Request;
@@ -280,14 +280,14 @@ Fortify::confirmPasswordView(function () {
 
 #### Remove [laravel-jetstream](https://www.npmjs.com/package/laravel-jetstream) NPM Package
 
-As of the Jetstream 2.0 release, this library is no longer necessary as all of its features have been incorporated into Inertia itself. You should remove the following from your `resources/js/app.js` file:
+As of the Access 2.0 release, this library is no longer necessary as all of its features have been incorporated into Inertia itself. You should remove the following from your `resources/js/app.js` file:
 
 ```
 import {InertiaForm} from 'laravel-jetstream';
 
 Vue.use(InertiaForm);
 
-````
+```
 
 Finally, you may remove the package:
 

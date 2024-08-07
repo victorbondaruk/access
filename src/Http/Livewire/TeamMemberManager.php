@@ -8,7 +8,7 @@ use Victorbondaruk\Access\Contracts\AddsTeamMembers;
 use Victorbondaruk\Access\Contracts\InvitesTeamMembers;
 use Victorbondaruk\Access\Contracts\RemovesTeamMembers;
 use Victorbondaruk\Access\Features;
-use Victorbondaruk\Access\Jetstream;
+use Victorbondaruk\Access\Access;
 use Victorbondaruk\Access\Role;
 use Livewire\Component;
 
@@ -127,8 +127,8 @@ class TeamMemberManager extends Component
      */
     public function cancelTeamInvitation($invitationId)
     {
-        if (! empty($invitationId)) {
-            $model = Jetstream::teamInvitationModel();
+        if (!empty($invitationId)) {
+            $model = Access::teamInvitationModel();
 
             $model::whereKey($invitationId)->delete();
         }
@@ -145,7 +145,7 @@ class TeamMemberManager extends Component
     public function manageRole($userId)
     {
         $this->currentlyManagingRole = true;
-        $this->managingRoleFor = Jetstream::findUserByIdOrFail($userId);
+        $this->managingRoleFor = Access::findUserByIdOrFail($userId);
         $this->currentRole = $this->managingRoleFor->teamRole($this->team)->key;
     }
 
@@ -224,7 +224,7 @@ class TeamMemberManager extends Component
         $remover->remove(
             $this->user,
             $this->team,
-            $user = Jetstream::findUserByIdOrFail($this->teamMemberIdBeingRemoved)
+            $user = Access::findUserByIdOrFail($this->teamMemberIdBeingRemoved)
         );
 
         $this->confirmingTeamMemberRemoval = false;
@@ -251,7 +251,7 @@ class TeamMemberManager extends Component
      */
     public function getRolesProperty()
     {
-        return collect(Jetstream::$roles)->transform(function ($role) {
+        return collect(Access::$roles)->transform(function ($role) {
             return with($role->jsonSerialize(), function ($data) {
                 return (new Role(
                     $data['key'],

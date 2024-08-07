@@ -12,16 +12,16 @@ use Victorbondaruk\Access\Http\Controllers\Inertia\TeamMemberController;
 use Victorbondaruk\Access\Http\Controllers\Inertia\TermsOfServiceController;
 use Victorbondaruk\Access\Http\Controllers\Inertia\UserProfileController;
 use Victorbondaruk\Access\Http\Controllers\TeamInvitationController;
-use Victorbondaruk\Access\Jetstream;
+use Victorbondaruk\Access\Access;
 
 Route::group(['middleware' => config('jetstream.middleware', ['web'])], function () {
-    if (Jetstream::hasTermsAndPrivacyPolicyFeature()) {
+    if (Access::hasTermsAndPrivacyPolicyFeature()) {
         Route::get('/terms-of-service', [TermsOfServiceController::class, 'show'])->name('terms.show');
         Route::get('/privacy-policy', [PrivacyPolicyController::class, 'show'])->name('policy.show');
     }
 
     $authMiddleware = config('jetstream.guard')
-        ? 'auth:'.config('jetstream.guard')
+        ? 'auth:' . config('jetstream.guard')
         : 'auth';
 
     $authSessionMiddleware = config('jetstream.auth_session', false)
@@ -39,14 +39,14 @@ Route::group(['middleware' => config('jetstream.middleware', ['web'])], function
         Route::delete('/user/profile-photo', [ProfilePhotoController::class, 'destroy'])
             ->name('current-user-photo.destroy');
 
-        if (Jetstream::hasAccountDeletionFeatures()) {
+        if (Access::hasAccountDeletionFeatures()) {
             Route::delete('/user', [CurrentUserController::class, 'destroy'])
                 ->name('current-user.destroy');
         }
 
         Route::group(['middleware' => 'verified'], function () {
             // API...
-            if (Jetstream::hasApiFeatures()) {
+            if (Access::hasApiFeatures()) {
                 Route::get('/user/api-tokens', [ApiTokenController::class, 'index'])->name('api-tokens.index');
                 Route::post('/user/api-tokens', [ApiTokenController::class, 'store'])->name('api-tokens.store');
                 Route::put('/user/api-tokens/{token}', [ApiTokenController::class, 'update'])->name('api-tokens.update');
@@ -54,7 +54,7 @@ Route::group(['middleware' => config('jetstream.middleware', ['web'])], function
             }
 
             // Teams...
-            if (Jetstream::hasTeamFeatures()) {
+            if (Access::hasTeamFeatures()) {
                 Route::get('/teams/create', [TeamController::class, 'create'])->name('teams.create');
                 Route::post('/teams', [TeamController::class, 'store'])->name('teams.store');
                 Route::get('/teams/{team}', [TeamController::class, 'show'])->name('teams.show');

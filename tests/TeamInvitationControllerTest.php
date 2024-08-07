@@ -2,12 +2,12 @@
 
 namespace Victorbondaruk\Access\Tests;
 
-use App\Actions\Jetstream\CreateTeam;
+use App\Actions\Access\CreateTeam;
 use App\Models\Team;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\URL;
 use Victorbondaruk\Access\Contracts\AddsTeamMembers;
-use Victorbondaruk\Access\Jetstream;
+use Victorbondaruk\Access\Access;
 use Victorbondaruk\Access\Tests\Fixtures\TeamPolicy;
 use Victorbondaruk\Access\Tests\Fixtures\User;
 
@@ -21,15 +21,15 @@ class TeamInvitationControllerTest extends OrchestraTestCase
         $app['config']->set('jetstream.features', ['teams']);
 
         Gate::policy(Team::class, TeamPolicy::class);
-        Jetstream::useUserModel(User::class);
+        Access::useUserModel(User::class);
     }
 
     public function test_team_invitations_can_be_accepted()
     {
         $this->mock(AddsTeamMembers::class)->shouldReceive('add')->once();
 
-        Jetstream::role('admin', 'Admin', ['foo', 'bar']);
-        Jetstream::role('editor', 'Editor', ['baz', 'qux']);
+        Access::role('admin', 'Admin', ['foo', 'bar']);
+        Access::role('editor', 'Editor', ['baz', 'qux']);
 
         $team = $this->createTeam();
 

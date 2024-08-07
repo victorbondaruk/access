@@ -2,9 +2,9 @@
 
 namespace Victorbondaruk\Access\Tests;
 
-use App\Actions\Jetstream\CreateTeam;
+use App\Actions\Access\CreateTeam;
 use Illuminate\Support\Facades\Gate;
-use Victorbondaruk\Access\Jetstream;
+use Victorbondaruk\Access\Access;
 use Victorbondaruk\Access\Team;
 use Victorbondaruk\Access\Tests\Fixtures\TeamPolicy;
 use Victorbondaruk\Access\Tests\Fixtures\User;
@@ -18,7 +18,7 @@ class TeamBehaviorTest extends OrchestraTestCase
         parent::defineEnvironment($app);
 
         Gate::policy(\App\Models\Team::class, TeamPolicy::class);
-        Jetstream::useUserModel(User::class);
+        Access::useUserModel(User::class);
     }
 
     public function test_team_relationship_methods()
@@ -58,7 +58,7 @@ class TeamBehaviorTest extends OrchestraTestCase
         $this->assertFalse($otherUser->hasTeamPermission($team, 'foo'));
 
         // Add the other user to the team...
-        Jetstream::role('editor', 'Editor', ['foo']);
+        Access::role('editor', 'Editor', ['foo']);
 
         $otherUser->teams()->attach($team, ['role' => 'editor']);
         $otherUser = $otherUser->fresh();
@@ -86,7 +86,7 @@ class TeamBehaviorTest extends OrchestraTestCase
 
     public function test_has_team_permission_checks_token_permissions()
     {
-        Jetstream::role('admin', 'Administrator', ['foo']);
+        Access::role('admin', 'Administrator', ['foo']);
 
         $action = new CreateTeam;
 

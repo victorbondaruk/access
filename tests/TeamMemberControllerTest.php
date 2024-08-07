@@ -2,10 +2,10 @@
 
 namespace Victorbondaruk\Access\Tests;
 
-use App\Actions\Jetstream\CreateTeam;
+use App\Actions\Access\CreateTeam;
 use App\Models\Team;
 use Illuminate\Support\Facades\Gate;
-use Victorbondaruk\Access\Jetstream;
+use Victorbondaruk\Access\Access;
 use Victorbondaruk\Access\Tests\Fixtures\TeamPolicy;
 use Victorbondaruk\Access\Tests\Fixtures\User;
 use Laravel\Sanctum\TransientToken;
@@ -20,13 +20,13 @@ class TeamMemberControllerTest extends OrchestraTestCase
         $app['config']->set('jetstream.features', ['teams']);
 
         Gate::policy(Team::class, TeamPolicy::class);
-        Jetstream::useUserModel(User::class);
+        Access::useUserModel(User::class);
     }
 
     public function test_team_member_permissions_can_be_updated()
     {
-        Jetstream::role('admin', 'Admin', ['foo', 'bar']);
-        Jetstream::role('editor', 'Editor', ['baz', 'qux']);
+        Access::role('admin', 'Admin', ['foo', 'bar']);
+        Access::role('editor', 'Editor', ['baz', 'qux']);
 
         $team = $this->createTeam();
 
@@ -38,7 +38,7 @@ class TeamMemberControllerTest extends OrchestraTestCase
 
         $team->users()->attach($adam, ['role' => 'admin']);
 
-        $response = $this->actingAs($team->owner)->put('/teams/'.$team->id.'/members/'.$adam->id, [
+        $response = $this->actingAs($team->owner)->put('/teams/' . $team->id . '/members/' . $adam->id, [
             'role' => 'editor',
         ]);
 
@@ -64,7 +64,7 @@ class TeamMemberControllerTest extends OrchestraTestCase
 
         $team->users()->attach($adam, ['role' => 'admin']);
 
-        $response = $this->actingAs($adam)->put('/teams/'.$team->id.'/members/'.$adam->id, [
+        $response = $this->actingAs($adam)->put('/teams/' . $team->id . '/members/' . $adam->id, [
             'role' => 'admin',
         ]);
 

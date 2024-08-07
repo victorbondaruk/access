@@ -5,7 +5,7 @@ namespace Victorbondaruk\Access\Tests;
 use Illuminate\Foundation\Testing\LazilyRefreshDatabase;
 use Laravel\Fortify\FortifyServiceProvider;
 use Victorbondaruk\Access\Features;
-use Victorbondaruk\Access\JetstreamServiceProvider;
+use Victorbondaruk\Access\AccessServiceProvider;
 use Livewire\LivewireServiceProvider;
 use Orchestra\Testbench\Concerns\WithWorkbench;
 use Orchestra\Testbench\TestCase;

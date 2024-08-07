@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Gate;
 use Victorbondaruk\Access\Contracts\AddsTeamMembers;
-use Victorbondaruk\Access\Jetstream;
+use Victorbondaruk\Access\Access;
 
 class TeamInvitationController extends Controller
 {
@@ -20,7 +20,7 @@ class TeamInvitationController extends Controller
      */
     public function accept(Request $request, $invitationId)
     {
-        $model = Jetstream::teamInvitationModel();
+        $model = Access::teamInvitationModel();
 
         $invitation = $model::whereKey($invitationId)->firstOrFail();
 
@@ -47,11 +47,11 @@ class TeamInvitationController extends Controller
      */
     public function destroy(Request $request, $invitationId)
     {
-        $model = Jetstream::teamInvitationModel();
+        $model = Access::teamInvitationModel();
 
         $invitation = $model::whereKey($invitationId)->firstOrFail();
 
-        if (! Gate::forUser($request->user())->check('removeTeamMember', $invitation->team)) {
+        if (!Gate::forUser($request->user())->check('removeTeamMember', $invitation->team)) {
             throw new AuthorizationException;
         }
 

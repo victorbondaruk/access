@@ -9,7 +9,7 @@ use Victorbondaruk\Access\Contracts\AddsTeamMembers;
 use Victorbondaruk\Access\Contracts\InvitesTeamMembers;
 use Victorbondaruk\Access\Contracts\RemovesTeamMembers;
 use Victorbondaruk\Access\Features;
-use Victorbondaruk\Access\Jetstream;
+use Victorbondaruk\Access\Access;
 
 class TeamMemberController extends Controller
 {
@@ -22,7 +22,7 @@ class TeamMemberController extends Controller
      */
     public function store(Request $request, $teamId)
     {
-        $team = Jetstream::newTeamModel()->findOrFail($teamId);
+        $team = Access::newTeamModel()->findOrFail($teamId);
 
         if (Features::sendsTeamInvitations()) {
             app(InvitesTeamMembers::class)->invite(
@@ -55,7 +55,7 @@ class TeamMemberController extends Controller
     {
         app(UpdateTeamMemberRole::class)->update(
             $request->user(),
-            Jetstream::newTeamModel()->findOrFail($teamId),
+            Access::newTeamModel()->findOrFail($teamId),
             $userId,
             $request->role
         );
@@ -73,12 +73,12 @@ class TeamMemberController extends Controller
      */
     public function destroy(Request $request, $teamId, $userId)
     {
-        $team = Jetstream::newTeamModel()->findOrFail($teamId);
+        $team = Access::newTeamModel()->findOrFail($teamId);
 
         app(RemovesTeamMembers::class)->remove(
             $request->user(),
             $team,
-            $user = Jetstream::findUserByIdOrFail($userId)
+            $user = Access::findUserByIdOrFail($userId)
         );
 
         if ($request->user()->id === $user->id) {

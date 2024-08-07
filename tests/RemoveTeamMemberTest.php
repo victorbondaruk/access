@@ -2,8 +2,8 @@
 
 namespace Victorbondaruk\Access\Tests;
 
-use App\Actions\Jetstream\CreateTeam;
-use App\Actions\Jetstream\RemoveTeamMember;
+use App\Actions\Access\CreateTeam;
+use App\Actions\Access\RemoveTeamMember;
 use App\Models\Team;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Support\Facades\Auth;
@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Gate;
 use Illuminate\Validation\ValidationException;
 use Victorbondaruk\Access\Events\RemovingTeamMember;
 use Victorbondaruk\Access\Events\TeamMemberRemoved;
-use Victorbondaruk\Access\Jetstream;
+use Victorbondaruk\Access\Access;
 use Victorbondaruk\Access\Tests\Fixtures\TeamPolicy;
 use Victorbondaruk\Access\Tests\Fixtures\User;
 
@@ -24,7 +24,7 @@ class RemoveTeamMemberTest extends OrchestraTestCase
 
         Gate::policy(Team::class, TeamPolicy::class);
 
-        Jetstream::useUserModel(User::class);
+        Access::useUserModel(User::class);
     }
 
     public function test_team_members_can_be_removed()

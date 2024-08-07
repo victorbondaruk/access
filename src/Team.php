@@ -13,7 +13,7 @@ abstract class Team extends Model
      */
     public function owner()
     {
-        return $this->belongsTo(Jetstream::userModel(), 'user_id');
+        return $this->belongsTo(Access::userModel(), 'user_id');
     }
 
     /**
@@ -33,10 +33,10 @@ abstract class Team extends Model
      */
     public function users()
     {
-        return $this->belongsToMany(Jetstream::userModel(), Jetstream::membershipModel())
-                        ->withPivot('role')
-                        ->withTimestamps()
-                        ->as('membership');
+        return $this->belongsToMany(Access::userModel(), Access::membershipModel())
+            ->withPivot('role')
+            ->withTimestamps()
+            ->as('membership');
     }
 
     /**
@@ -82,7 +82,7 @@ abstract class Team extends Model
      */
     public function teamInvitations()
     {
-        return $this->hasMany(Jetstream::teamInvitationModel());
+        return $this->hasMany(Access::teamInvitationModel());
     }
 
     /**
@@ -110,10 +110,10 @@ abstract class Team extends Model
     public function purge()
     {
         $this->owner()->where('current_team_id', $this->id)
-                ->update(['current_team_id' => null]);
+            ->update(['current_team_id' => null]);
 
         $this->users()->where('current_team_id', $this->id)
-                ->update(['current_team_id' => null]);
+            ->update(['current_team_id' => null]);
 
         $this->users()->detach();
 

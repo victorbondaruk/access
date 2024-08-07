@@ -9,7 +9,7 @@
          cacheDirectory=".phpunit.cache"
          backupStaticProperties="false">
     <testsuites>
-        <testsuite name="Jetstream Test Suite">
+        <testsuite name="Access Test Suite">
             <directory suffix="Test.php">./tests/</directory>
         </testsuite>
     </testsuites>

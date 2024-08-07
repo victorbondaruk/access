@@ -5,7 +5,7 @@ namespace Victorbondaruk\Access\Http\Controllers\Livewire;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Str;
-use Victorbondaruk\Access\Jetstream;
+use Victorbondaruk\Access\Access;
 
 class PrivacyPolicyController extends Controller
 {
@@ -17,7 +17,7 @@ class PrivacyPolicyController extends Controller
      */
     public function show(Request $request)
     {
-        $policyFile = Jetstream::localizedMarkdownPath('policy.md');
+        $policyFile = Access::localizedMarkdownPath('policy.md');
 
         return view('policy', [
             'policy' => Str::markdown(file_get_contents($policyFile)),

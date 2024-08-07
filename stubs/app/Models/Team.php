@@ -6,9 +6,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Victorbondaruk\Access\Events\TeamCreated;
 use Victorbondaruk\Access\Events\TeamDeleted;
 use Victorbondaruk\Access\Events\TeamUpdated;
-use Victorbondaruk\Access\Team as JetstreamTeam;
+use Victorbondaruk\Access\Team as AccessTeam;
 
-class Team extends JetstreamTeam
+class Team extends AccessTeam
 {
     use HasFactory;
 

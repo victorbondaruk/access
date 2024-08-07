@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
-use Victorbondaruk\Access\Membership as JetstreamMembership;
+use Victorbondaruk\Access\Membership as AccessMembership;
 
-class Membership extends JetstreamMembership
+class Membership extends AccessMembership
 {
     /**
      * Indicates if the IDs are auto-incrementing.

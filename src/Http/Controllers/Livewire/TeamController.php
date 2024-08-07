@@ -5,7 +5,7 @@ namespace Victorbondaruk\Access\Http\Controllers\Livewire;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Gate;
-use Victorbondaruk\Access\Jetstream;
+use Victorbondaruk\Access\Access;
 
 class TeamController extends Controller
 {
@@ -18,7 +18,7 @@ class TeamController extends Controller
      */
     public function show(Request $request, $teamId)
     {
-        $team = Jetstream::newTeamModel()->findOrFail($teamId);
+        $team = Access::newTeamModel()->findOrFail($teamId);
 
         if (Gate::denies('view', $team)) {
             abort(403);
@@ -38,7 +38,7 @@ class TeamController extends Controller
      */
     public function create(Request $request)
     {
-        Gate::authorize('create', Jetstream::newTeamModel());
+        Gate::authorize('create', Access::newTeamModel());
 
         return view('teams.create', [
             'user' => $request->user(),

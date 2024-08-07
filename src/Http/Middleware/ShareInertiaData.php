@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Session;
 use Inertia\Inertia;
 use Laravel\Fortify\Features;
-use Victorbondaruk\Access\Jetstream;
+use Victorbondaruk\Access\Access;
 
 class ShareInertiaData
 {
@@ -25,27 +25,27 @@ class ShareInertiaData
 
                 return [
                     'canCreateTeams' => $user &&
-                                        Jetstream::userHasTeamFeatures($user) &&
-                                        Gate::forUser($user)->check('create', Jetstream::newTeamModel()),
+                        Access::userHasTeamFeatures($user) &&
+                        Gate::forUser($user)->check('create', Access::newTeamModel()),
                     'canManageTwoFactorAuthentication' => Features::canManageTwoFactorAuthentication(),
                     'canUpdatePassword' => Features::enabled(Features::updatePasswords()),
                     'canUpdateProfileInformation' => Features::canUpdateProfileInformation(),
                     'hasEmailVerification' => Features::enabled(Features::emailVerification()),
                     'flash' => $request->session()->get('flash', []),
-                    'hasAccountDeletionFeatures' => Jetstream::hasAccountDeletionFeatures(),
-                    'hasApiFeatures' => Jetstream::hasApiFeatures(),
-                    'hasTeamFeatures' => Jetstream::hasTeamFeatures(),
-                    'hasTermsAndPrivacyPolicyFeature' => Jetstream::hasTermsAndPrivacyPolicyFeature(),
-                    'managesProfilePhotos' => Jetstream::managesProfilePhotos(),
+                    'hasAccountDeletionFeatures' => Access::hasAccountDeletionFeatures(),
+                    'hasApiFeatures' => Access::hasApiFeatures(),
+                    'hasTeamFeatures' => Access::hasTeamFeatures(),
+                    'hasTermsAndPrivacyPolicyFeature' => Access::hasTermsAndPrivacyPolicyFeature(),
+                    'managesProfilePhotos' => Access::managesProfilePhotos(),
                 ];
             },
             'auth' => [
                 'user' => function () use ($request) {
-                    if (! $user = $request->user()) {
+                    if (!$user = $request->user()) {
                         return;
                     }
 
-                    $userHasTeamFeatures = Jetstream::userHasTeamFeatures($user);
+                    $userHasTeamFeatures = Access::userHasTeamFeatures($user);
 
                     if ($user && $userHasTeamFeatures) {
                         $user->currentTeam;
@@ -55,7 +55,7 @@ class ShareInertiaData
                         'all_teams' => $userHasTeamFeatures ? $user->allTeams()->values() : null,
                     ]), [
                         'two_factor_enabled' => Features::enabled(Features::twoFactorAuthentication())
-                            && ! is_null($user->two_factor_secret),
+                            && !is_null($user->two_factor_secret),
                     ]);
                 },
             ],

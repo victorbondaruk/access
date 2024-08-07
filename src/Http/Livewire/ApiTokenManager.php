@@ -4,7 +4,7 @@ namespace Victorbondaruk\Access\Http\Livewire;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
-use Victorbondaruk\Access\Jetstream;
+use Victorbondaruk\Access\Access;
 use Livewire\Component;
 
 class ApiTokenManager extends Component
@@ -77,7 +77,7 @@ class ApiTokenManager extends Component
      */
     public function mount()
     {
-        $this->createApiTokenForm['permissions'] = Jetstream::$defaultPermissions;
+        $this->createApiTokenForm['permissions'] = Access::$defaultPermissions;
     }
 
     /**
@@ -97,11 +97,11 @@ class ApiTokenManager extends Component
 
         $this->displayTokenValue($this->user->createToken(
             $this->createApiTokenForm['name'],
-            Jetstream::validPermissions($this->createApiTokenForm['permissions'])
+            Access::validPermissions($this->createApiTokenForm['permissions'])
         ));
 
         $this->createApiTokenForm['name'] = '';
-        $this->createApiTokenForm['permissions'] = Jetstream::$defaultPermissions;
+        $this->createApiTokenForm['permissions'] = Access::$defaultPermissions;
 
         $this->dispatch('created');
     }
@@ -132,7 +132,8 @@ class ApiTokenManager extends Component
         $this->managingApiTokenPermissions = true;
 
         $this->managingPermissionsFor = $this->user->tokens()->where(
-            'id', $tokenId
+            'id',
+            $tokenId
         )->firstOrFail();
 
         $this->updateApiTokenForm['permissions'] = $this->managingPermissionsFor->abilities;
@@ -146,7 +147,7 @@ class ApiTokenManager extends Component
     public function updateApiToken()
     {
         $this->managingPermissionsFor->forceFill([
-            'abilities' => Jetstream::validPermissions($this->updateApiTokenForm['permissions']),
+            'abilities' => Access::validPermissions($this->updateApiTokenForm['permissions']),
         ])->save();
 
         $this->managingApiTokenPermissions = false;

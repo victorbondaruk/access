@@ -5,7 +5,7 @@ namespace Victorbondaruk\Access\Actions;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Validator;
 use Victorbondaruk\Access\Events\TeamMemberUpdated;
-use Victorbondaruk\Access\Jetstream;
+use Victorbondaruk\Access\Access;
 use Victorbondaruk\Access\Rules\Role;
 
 class UpdateTeamMemberRole
@@ -33,6 +33,6 @@ class UpdateTeamMemberRole
             'role' => $role,
         ]);
 
-        TeamMemberUpdated::dispatch($team->fresh(), Jetstream::findUserByIdOrFail($teamMemberId));
+        TeamMemberUpdated::dispatch($team->fresh(), Access::findUserByIdOrFail($teamMemberId));
     }
 }

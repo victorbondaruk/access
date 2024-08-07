@@ -5,7 +5,7 @@ namespace Victorbondaruk\Access\Tests;
 use App\Models\Team;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Victorbondaruk\Access\Jetstream;
+use Victorbondaruk\Access\Access;
 use Victorbondaruk\Access\OwnerRole;
 use Victorbondaruk\Access\Role;
 use Victorbondaruk\Access\Tests\Fixtures\User as UserFixture;
@@ -18,10 +18,10 @@ class HasTeamsTest extends OrchestraTestCase
     {
         parent::defineEnvironment($app);
 
-        Jetstream::$permissions = [];
-        Jetstream::$roles = [];
+        Access::$permissions = [];
+        Access::$roles = [];
 
-        Jetstream::useUserModel(UserFixture::class);
+        Access::useUserModel(UserFixture::class);
     }
 
     public function test_teamRole_returns_an_OwnerRole_for_the_team_owner(): void
@@ -33,7 +33,7 @@ class HasTeamsTest extends OrchestraTestCase
 
     public function test_teamRole_returns_the_matching_role(): void
     {
-        Jetstream::role('admin', 'Admin', [
+        Access::role('admin', 'Admin', [
             'read',
             'create',
         ])->description('Admin Description');
@@ -81,7 +81,7 @@ class HasTeamsTest extends OrchestraTestCase
 
     public function test_teamPermissions_returns_permissions_for_the_users_role(): void
     {
-        Jetstream::role('admin', 'Admin', [
+        Access::role('admin', 'Admin', [
             'read',
             'create',
         ])->description('Admin Description');
@@ -97,7 +97,7 @@ class HasTeamsTest extends OrchestraTestCase
 
     public function test_teamPermissions_returns_empty_permissions_for_members_without_a_defined_role(): void
     {
-        Jetstream::role('admin', 'Admin', [
+        Access::role('admin', 'Admin', [
             'read',
             'create',
         ])->description('Admin Description');

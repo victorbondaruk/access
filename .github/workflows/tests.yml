@@ -74,7 +74,7 @@ jobs:
         with:
           path: 'jetstream'
 
-      - name: Install Jetstream
+      - name: Install Access
         run: |
           composer update "laravel/jetstream" --prefer-dist --no-interaction --no-progress -W
           php artisan jetstream:install ${{ matrix.stack }} --teams --api --verification --pest

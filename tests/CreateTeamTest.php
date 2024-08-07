@@ -2,11 +2,11 @@
 
 namespace Victorbondaruk\Access\Tests;
 
-use App\Actions\Jetstream\CreateTeam;
+use App\Actions\Access\CreateTeam;
 use App\Models\Team;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Validation\ValidationException;
-use Victorbondaruk\Access\Jetstream;
+use Victorbondaruk\Access\Access;
 use Victorbondaruk\Access\Tests\Fixtures\TeamPolicy;
 use Victorbondaruk\Access\Tests\Fixtures\User;
 
@@ -17,7 +17,7 @@ class CreateTeamTest extends OrchestraTestCase
         parent::defineEnvironment($app);
 
         Gate::policy(Team::class, TeamPolicy::class);
-        Jetstream::useUserModel(User::class);
+        Access::useUserModel(User::class);
     }
 
     public function test_team_name_can_be_updated()

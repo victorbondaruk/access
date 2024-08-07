@@ -4,7 +4,7 @@ namespace Victorbondaruk\Access\Http\Controllers\Inertia;
 
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-use Victorbondaruk\Access\Jetstream;
+use Victorbondaruk\Access\Access;
 
 class ApiTokenController extends Controller
 {
@@ -16,14 +16,14 @@ class ApiTokenController extends Controller
      */
     public function index(Request $request)
     {
-        return Jetstream::inertia()->render($request, 'API/Index', [
+        return Access::inertia()->render($request, 'API/Index', [
             'tokens' => $request->user()->tokens->map(function ($token) {
                 return $token->toArray() + [
                     'last_used_ago' => optional($token->last_used_at)->diffForHumans(),
                 ];
             }),
-            'availablePermissions' => Jetstream::$permissions,
-            'defaultPermissions' => Jetstream::$defaultPermissions,
+            'availablePermissions' => Access::$permissions,
+            'defaultPermissions' => Access::$defaultPermissions,
         ]);
     }
 
@@ -41,7 +41,7 @@ class ApiTokenController extends Controller
 
         $token = $request->user()->createToken(
             $request->name,
-            Jetstream::validPermissions($request->input('permissions', []))
+            Access::validPermissions($request->input('permissions', []))
         );
 
         return back()->with('flash', [
@@ -66,7 +66,7 @@ class ApiTokenController extends Controller
         $token = $request->user()->tokens()->where('id', $tokenId)->firstOrFail();
 
         $token->forceFill([
-            'abilities' => Jetstream::validPermissions($request->input('permissions', [])),
+            'abilities' => Access::validPermissions($request->input('permissions', [])),
         ])->save();
 
         return back(303);

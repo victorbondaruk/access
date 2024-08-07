@@ -2,17 +2,17 @@
 
 namespace App\Providers;
 
-use App\Actions\Jetstream\AddTeamMember;
-use App\Actions\Jetstream\CreateTeam;
-use App\Actions\Jetstream\DeleteTeam;
-use App\Actions\Jetstream\DeleteUser;
-use App\Actions\Jetstream\InviteTeamMember;
-use App\Actions\Jetstream\RemoveTeamMember;
-use App\Actions\Jetstream\UpdateTeamName;
+use App\Actions\Access\AddTeamMember;
+use App\Actions\Access\CreateTeam;
+use App\Actions\Access\DeleteTeam;
+use App\Actions\Access\DeleteUser;
+use App\Actions\Access\InviteTeamMember;
+use App\Actions\Access\RemoveTeamMember;
+use App\Actions\Access\UpdateTeamName;
 use Illuminate\Support\ServiceProvider;
-use Victorbondaruk\Access\Jetstream;
+use Victorbondaruk\Access\Access;
 
-class JetstreamServiceProvider extends ServiceProvider
+class AccessServiceProvider extends ServiceProvider
 {
     /**
      * Register any application services.
@@ -29,13 +29,13 @@ class JetstreamServiceProvider extends ServiceProvider
     {
         $this->configurePermissions();
 
-        Jetstream::createTeamsUsing(CreateTeam::class);
-        Jetstream::updateTeamNamesUsing(UpdateTeamName::class);
-        Jetstream::addTeamMembersUsing(AddTeamMember::class);
-        Jetstream::inviteTeamMembersUsing(InviteTeamMember::class);
-        Jetstream::removeTeamMembersUsing(RemoveTeamMember::class);
-        Jetstream::deleteTeamsUsing(DeleteTeam::class);
-        Jetstream::deleteUsersUsing(DeleteUser::class);
+        Access::createTeamsUsing(CreateTeam::class);
+        Access::updateTeamNamesUsing(UpdateTeamName::class);
+        Access::addTeamMembersUsing(AddTeamMember::class);
+        Access::inviteTeamMembersUsing(InviteTeamMember::class);
+        Access::removeTeamMembersUsing(RemoveTeamMember::class);
+        Access::deleteTeamsUsing(DeleteTeam::class);
+        Access::deleteUsersUsing(DeleteUser::class);
     }
 
     /**
@@ -43,16 +43,16 @@ class JetstreamServiceProvider extends ServiceProvider
      */
     protected function configurePermissions(): void
     {
-        Jetstream::defaultApiTokenPermissions(['read']);
+        Access::defaultApiTokenPermissions(['read']);
 
-        Jetstream::role('admin', 'Administrator', [
+        Access::role('admin', 'Administrator', [
             'create',
             'read',
             'update',
             'delete',
         ])->description('Administrator users can perform any action.');
 
-        Jetstream::role('editor', 'Editor', [
+        Access::role('editor', 'Editor', [
             'read',
             'create',
             'update',

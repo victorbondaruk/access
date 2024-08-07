@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Actions\Jetstream;
+namespace App\Actions\Access;
 
 use App\Models\Team;
 use App\Models\User;
@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use Victorbondaruk\Access\Contracts\InvitesTeamMembers;
 use Victorbondaruk\Access\Events\InvitingTeamMember;
-use Victorbondaruk\Access\Jetstream;
+use Victorbondaruk\Access\Access;
 use Victorbondaruk\Access\Mail\TeamInvitation;
 use Victorbondaruk\Access\Rules\Role;
 
@@ -62,13 +62,13 @@ class InviteTeamMember implements InvitesTeamMembers
         return array_filter([
             'email' => [
                 'required', 'email',
-                Rule::unique(Jetstream::teamInvitationModel())->where(function (Builder $query) use ($team) {
+                Rule::unique(Access::teamInvitationModel())->where(function (Builder $query) use ($team) {
                     $query->where('team_id', $team->id);
                 }),
             ],
-            'role' => Jetstream::hasRoles()
-                            ? ['required', 'string', new Role]
-                            : null,
+            'role' => Access::hasRoles()
+                ? ['required', 'string', new Role]
+                : null,
         ]);
     }
 

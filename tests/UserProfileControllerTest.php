@@ -4,7 +4,7 @@ namespace Victorbondaruk\Access\Tests;
 
 use Laravel\Fortify\Actions\DisableTwoFactorAuthentication;
 use Laravel\Fortify\Features;
-use Victorbondaruk\Access\Jetstream;
+use Victorbondaruk\Access\Access;
 use Victorbondaruk\Access\Tests\Fixtures\User;
 use Mockery as m;
 
@@ -29,7 +29,7 @@ class UserProfileControllerTest extends OrchestraTestCase
             ],
         ]);
 
-        Jetstream::useUserModel(User::class);
+        Access::useUserModel(User::class);
     }
 
     public function test_empty_two_factor_state_is_noted()
@@ -37,7 +37,7 @@ class UserProfileControllerTest extends OrchestraTestCase
         $disable = $this->mock(DisableTwoFactorAuthentication::class);
         $disable->shouldReceive('__invoke')->once();
 
-        Jetstream::$inertiaManager = $inertia = m::mock();
+        Access::$inertiaManager = $inertia = m::mock();
         $inertia->shouldReceive('render')->once();
 
         $user = User::forceCreate([
@@ -58,7 +58,7 @@ class UserProfileControllerTest extends OrchestraTestCase
         $disable = $this->mock(DisableTwoFactorAuthentication::class);
         $disable->shouldReceive('__invoke')->never();
 
-        Jetstream::$inertiaManager = $inertia = m::mock();
+        Access::$inertiaManager = $inertia = m::mock();
         $inertia->shouldReceive('render')->once();
 
         $user = User::forceCreate([
@@ -69,8 +69,8 @@ class UserProfileControllerTest extends OrchestraTestCase
         ]);
 
         $response = $this->actingAs($user)
-                        ->withSession(['two_factor_empty_at' => time()])
-                        ->get('/user/profile');
+            ->withSession(['two_factor_empty_at' => time()])
+            ->get('/user/profile');
 
         $response->assertStatus(200);
     }
@@ -80,7 +80,7 @@ class UserProfileControllerTest extends OrchestraTestCase
         $disable = $this->mock(DisableTwoFactorAuthentication::class);
         $disable->shouldReceive('__invoke')->once();
 
-        Jetstream::$inertiaManager = $inertia = m::mock();
+        Access::$inertiaManager = $inertia = m::mock();
         $inertia->shouldReceive('render')->once();
 
         $user = User::forceCreate([
@@ -91,11 +91,11 @@ class UserProfileControllerTest extends OrchestraTestCase
         ]);
 
         $response = $this->actingAs($user)
-                        ->withSession([
-                            'two_factor_empty_at' => time(),
-                            'two_factor_confirming_at' => time() - 10,
-                        ])
-                        ->get('/user/profile');
+            ->withSession([
+                'two_factor_empty_at' => time(),
+                'two_factor_confirming_at' => time() - 10,
+            ])
+            ->get('/user/profile');
 
         $response->assertStatus(200);
     }

@@ -2,16 +2,16 @@
 
 namespace Victorbondaruk\Access\Tests;
 
-use App\Actions\Jetstream\CreateTeam;
-use App\Actions\Jetstream\DeleteTeam;
-use App\Actions\Jetstream\DeleteUser;
+use App\Actions\Access\CreateTeam;
+use App\Actions\Access\DeleteTeam;
+use App\Actions\Access\DeleteUser;
 use App\Models\Team;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Str;
-use Victorbondaruk\Access\Jetstream;
+use Victorbondaruk\Access\Access;
 use Victorbondaruk\Access\Tests\Fixtures\TeamPolicy;
 use Victorbondaruk\Access\Tests\Fixtures\User;
 
@@ -24,7 +24,7 @@ class DeleteUserWithTeamsTest extends OrchestraTestCase
         parent::defineEnvironment($app);
 
         Gate::policy(Team::class, TeamPolicy::class);
-        Jetstream::useUserModel(User::class);
+        Access::useUserModel(User::class);
     }
 
     public function test_user_can_be_deleted()
@@ -37,7 +37,7 @@ class DeleteUserWithTeamsTest extends OrchestraTestCase
         $this->assertSame(2, DB::table('teams')->count());
         $this->assertSame(1, DB::table('team_user')->count());
 
-        copy(__DIR__.'/../stubs/app/Actions/Jetstream/DeleteUserWithTeams.php', $fixture = __DIR__.'/Fixtures/DeleteUser.php');
+        copy(__DIR__ . '/../stubs/app/Actions/Access/DeleteUserWithTeams.php', $fixture = __DIR__ . '/Fixtures/DeleteUser.php');
 
         require $fixture;
 
@@ -58,7 +58,7 @@ class DeleteUserWithTeamsTest extends OrchestraTestCase
 
         $user = User::forceCreate([
             'name' => Str::random(10),
-            'email' => Str::random(10).'@laravel.com',
+            'email' => Str::random(10) . '@laravel.com',
             'password' => 'secret',
         ]);
 

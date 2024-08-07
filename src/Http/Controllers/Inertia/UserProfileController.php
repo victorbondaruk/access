@@ -8,7 +8,7 @@ use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 use Laravel\Fortify\Features;
 use Victorbondaruk\Access\Agent;
-use Victorbondaruk\Access\Jetstream;
+use Victorbondaruk\Access\Access;
 
 class UserProfileController extends Controller
 {
@@ -24,7 +24,7 @@ class UserProfileController extends Controller
     {
         $this->validateTwoFactorAuthenticationState($request);
 
-        return Jetstream::inertia()->render($request, 'Profile/Show', [
+        return Access::inertia()->render($request, 'Profile/Show', [
             'confirmsTwoFactorAuthentication' => Features::optionEnabled(Features::twoFactorAuthentication(), 'confirm'),
             'sessions' => $this->sessions($request)->all(),
         ]);
@@ -44,9 +44,9 @@ class UserProfileController extends Controller
 
         return collect(
             DB::connection(config('session.connection'))->table(config('session.table', 'sessions'))
-                    ->where('user_id', $request->user()->getAuthIdentifier())
-                    ->orderBy('last_activity', 'desc')
-                    ->get()
+                ->where('user_id', $request->user()->getAuthIdentifier())
+                ->orderBy('last_activity', 'desc')
+                ->get()
         )->map(function ($session) use ($request) {
             $agent = $this->createAgent($session);
 

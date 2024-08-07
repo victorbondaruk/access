@@ -23,6 +23,6 @@ class TeamInvitation extends Model
      */
     public function team()
     {
-        return $this->belongsTo(Jetstream::teamModel());
+        return $this->belongsTo(Access::teamModel());
     }
 }

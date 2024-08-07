@@ -9,7 +9,7 @@ use Victorbondaruk\Access\Actions\ValidateTeamDeletion;
 use Victorbondaruk\Access\Contracts\CreatesTeams;
 use Victorbondaruk\Access\Contracts\DeletesTeams;
 use Victorbondaruk\Access\Contracts\UpdatesTeamNames;
-use Victorbondaruk\Access\Jetstream;
+use Victorbondaruk\Access\Access;
 use Victorbondaruk\Access\RedirectsActions;
 
 class TeamController extends Controller
@@ -25,15 +25,15 @@ class TeamController extends Controller
      */
     public function show(Request $request, $teamId)
     {
-        $team = Jetstream::newTeamModel()->findOrFail($teamId);
+        $team = Access::newTeamModel()->findOrFail($teamId);
 
         Gate::authorize('view', $team);
 
-        return Jetstream::inertia()->render($request, 'Teams/Show', [
+        return Access::inertia()->render($request, 'Teams/Show', [
             'team' => $team->load('owner', 'users', 'teamInvitations'),
-            'availableRoles' => array_values(Jetstream::$roles),
-            'availablePermissions' => Jetstream::$permissions,
-            'defaultPermissions' => Jetstream::$defaultPermissions,
+            'availableRoles' => array_values(Access::$roles),
+            'availablePermissions' => Access::$permissions,
+            'defaultPermissions' => Access::$defaultPermissions,
             'permissions' => [
                 'canAddTeamMembers' => Gate::check('addTeamMember', $team),
                 'canDeleteTeam' => Gate::check('delete', $team),
@@ -52,9 +52,9 @@ class TeamController extends Controller
      */
     public function create(Request $request)
     {
-        Gate::authorize('create', Jetstream::newTeamModel());
+        Gate::authorize('create', Access::newTeamModel());
 
-        return Jetstream::inertia()->render($request, 'Teams/Create');
+        return Access::inertia()->render($request, 'Teams/Create');
     }
 
     /**
@@ -81,7 +81,7 @@ class TeamController extends Controller
      */
     public function update(Request $request, $teamId)
     {
-        $team = Jetstream::newTeamModel()->findOrFail($teamId);
+        $team = Access::newTeamModel()->findOrFail($teamId);
 
         app(UpdatesTeamNames::class)->update($request->user(), $team, $request->all());
 
@@ -97,7 +97,7 @@ class TeamController extends Controller
      */
     public function destroy(Request $request, $teamId)
     {
-        $team = Jetstream::newTeamModel()->findOrFail($teamId);
+        $team = Access::newTeamModel()->findOrFail($teamId);
 
         app(ValidateTeamDeletion::class)->validate($request->user(), $team);
 

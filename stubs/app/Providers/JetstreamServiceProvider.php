@@ -2,11 +2,11 @@
 
 namespace App\Providers;
 
-use App\Actions\Jetstream\DeleteUser;
+use App\Actions\Access\DeleteUser;
 use Illuminate\Support\ServiceProvider;
-use Victorbondaruk\Access\Jetstream;
+use Victorbondaruk\Access\Access;
 
-class JetstreamServiceProvider extends ServiceProvider
+class AccessServiceProvider extends ServiceProvider
 {
     /**
      * Register any application services.
@@ -23,7 +23,7 @@ class JetstreamServiceProvider extends ServiceProvider
     {
         $this->configurePermissions();
 
-        Jetstream::deleteUsersUsing(DeleteUser::class);
+        Access::deleteUsersUsing(DeleteUser::class);
     }
 
     /**
@@ -31,9 +31,9 @@ class JetstreamServiceProvider extends ServiceProvider
      */
     protected function configurePermissions(): void
     {
-        Jetstream::defaultApiTokenPermissions(['read']);
+        Access::defaultApiTokenPermissions(['read']);
 
-        Jetstream::permissions([
+        Access::permissions([
             'create',
             'read',
             'update',

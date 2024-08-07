@@ -4,7 +4,7 @@ namespace Victorbondaruk\Access\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-use Victorbondaruk\Access\Jetstream;
+use Victorbondaruk\Access\Access;
 
 class CurrentTeamController extends Controller
 {
@@ -16,9 +16,9 @@ class CurrentTeamController extends Controller
      */
     public function update(Request $request)
     {
-        $team = Jetstream::newTeamModel()->findOrFail($request->team_id);
+        $team = Access::newTeamModel()->findOrFail($request->team_id);
 
-        if (! $request->user()->switchTeam($team)) {
+        if (!$request->user()->switchTeam($team)) {
             abort(403);
         }
 

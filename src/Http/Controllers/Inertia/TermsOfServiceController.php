@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Str;
 use Inertia\Inertia;
-use Victorbondaruk\Access\Jetstream;
+use Victorbondaruk\Access\Access;
 
 class TermsOfServiceController extends Controller
 {
@@ -18,7 +18,7 @@ class TermsOfServiceController extends Controller
      */
     public function show(Request $request)
     {
-        $termsFile = Jetstream::localizedMarkdownPath('terms.md');
+        $termsFile = Access::localizedMarkdownPath('terms.md');
 
         return Inertia::render('TermsOfService', [
             'terms' => Str::markdown(file_get_contents($termsFile)),

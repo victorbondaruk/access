@@ -29,7 +29,7 @@ trait HasTeams
             $this->switchTeam($this->personalTeam());
         }
 
-        return $this->belongsTo(Jetstream::teamModel(), 'current_team_id');
+        return $this->belongsTo(Access::teamModel(), 'current_team_id');
     }
 
     /**
@@ -40,7 +40,7 @@ trait HasTeams
      */
     public function switchTeam($team)
     {
-        if (! $this->belongsToTeam($team)) {
+        if (!$this->belongsToTeam($team)) {
             return false;
         }
 
@@ -70,7 +70,7 @@ trait HasTeams
      */
     public function ownedTeams()
     {
-        return $this->hasMany(Jetstream::teamModel());
+        return $this->hasMany(Access::teamModel());
     }
 
     /**
@@ -80,10 +80,10 @@ trait HasTeams
      */
     public function teams()
     {
-        return $this->belongsToMany(Jetstream::teamModel(), Jetstream::membershipModel())
-                        ->withPivot('role')
-                        ->withTimestamps()
-                        ->as('membership');
+        return $this->belongsToMany(Access::teamModel(), Access::membershipModel())
+            ->withPivot('role')
+            ->withTimestamps()
+            ->as('membership');
     }
 
     /**
@@ -140,7 +140,7 @@ trait HasTeams
             return new OwnerRole;
         }
 
-        if (! $this->belongsToTeam($team)) {
+        if (!$this->belongsToTeam($team)) {
             return;
         }
 
@@ -150,7 +150,7 @@ trait HasTeams
             ->membership
             ->role;
 
-        return $role ? Jetstream::findRole($role) : null;
+        return $role ? Access::findRole($role) : null;
     }
 
     /**
@@ -166,8 +166,9 @@ trait HasTeams
             return true;
         }
 
-        return $this->belongsToTeam($team) && optional(Jetstream::findRole($team->users->where(
-            'id', $this->id
+        return $this->belongsToTeam($team) && optional(Access::findRole($team->users->where(
+            'id',
+            $this->id
         )->first()->membership->role))->key === $role;
     }
 
@@ -183,7 +184,7 @@ trait HasTeams
             return ['*'];
         }
 
-        if (! $this->belongsToTeam($team)) {
+        if (!$this->belongsToTeam($team)) {
             return [];
         }
 
@@ -203,21 +204,23 @@ trait HasTeams
             return true;
         }
 
-        if (! $this->belongsToTeam($team)) {
+        if (!$this->belongsToTeam($team)) {
             return false;
         }
 
-        if (in_array(HasApiTokens::class, class_uses_recursive($this)) &&
-            ! $this->tokenCan($permission) &&
-            $this->currentAccessToken() !== null) {
+        if (
+            in_array(HasApiTokens::class, class_uses_recursive($this)) &&
+            !$this->tokenCan($permission) &&
+            $this->currentAccessToken() !== null
+        ) {
             return false;
         }
 
         $permissions = $this->teamPermissions($team);
 
         return in_array($permission, $permissions) ||
-               in_array('*', $permissions) ||
-               (Str::endsWith($permission, ':create') && in_array('*:create', $permissions)) ||
-               (Str::endsWith($permission, ':update') && in_array('*:update', $permissions));
+            in_array('*', $permissions) ||
+            (Str::endsWith($permission, ':create') && in_array('*:create', $permissions)) ||
+            (Str::endsWith($permission, ':update') && in_array('*:update', $permissions));
     }
 }

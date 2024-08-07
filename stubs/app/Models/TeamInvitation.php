@@ -3,10 +3,10 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Victorbondaruk\Access\Jetstream;
-use Victorbondaruk\Access\TeamInvitation as JetstreamTeamInvitation;
+use Victorbondaruk\Access\Access;
+use Victorbondaruk\Access\TeamInvitation as AccessTeamInvitation;
 
-class TeamInvitation extends JetstreamTeamInvitation
+class TeamInvitation extends AccessTeamInvitation
 {
     /**
      * The attributes that are mass assignable.
@@ -23,6 +23,6 @@ class TeamInvitation extends JetstreamTeamInvitation
      */
     public function team(): BelongsTo
     {
-        return $this->belongsTo(Jetstream::teamModel());
+        return $this->belongsTo(Access::teamModel());
     }
 }

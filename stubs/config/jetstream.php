@@ -7,10 +7,10 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Jetstream Stack
+    | Access Stack
     |--------------------------------------------------------------------------
     |
-    | This configuration value informs Jetstream which "stack" you will be
+    | This configuration value informs Access which "stack" you will be
     | using for your application. In general, this value is set for you
     | during installation and will not need to be changed after that.
     |
@@ -20,10 +20,10 @@ return [
 
     /*
      |--------------------------------------------------------------------------
-     | Jetstream Route Middleware
+     | Access Route Middleware
      |--------------------------------------------------------------------------
      |
-     | Here you may specify which middleware Jetstream will assign to the routes
+     | Here you may specify which middleware Access will assign to the routes
      | that it registers with the application. When necessary, you may modify
      | these middleware; however, this default value is usually sufficient.
      |
@@ -35,10 +35,10 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Jetstream Guard
+    | Access Guard
     |--------------------------------------------------------------------------
     |
-    | Here you may specify the authentication guard Jetstream will use while
+    | Here you may specify the authentication guard Access will use while
     | authenticating users. This value should correspond with one of your
     | guards that is already present in your "auth" configuration file.
     |
@@ -51,7 +51,7 @@ return [
     | Features
     |--------------------------------------------------------------------------
     |
-    | Some of Jetstream's features are optional. You may disable the features
+    | Some of Access's features are optional. You may disable the features
     | by removing them from this array. You're free to only remove some of
     | these features or you can even remove all of these if you need to.
     |

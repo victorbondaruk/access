@@ -2,10 +2,10 @@
 
 namespace Victorbondaruk\Access\Tests;
 
-use App\Actions\Jetstream\CreateTeam;
+use App\Actions\Access\CreateTeam;
 use App\Models\Team;
 use Illuminate\Support\Facades\Gate;
-use Victorbondaruk\Access\Jetstream;
+use Victorbondaruk\Access\Access;
 use Victorbondaruk\Access\Tests\Fixtures\TeamPolicy;
 use Victorbondaruk\Access\Tests\Fixtures\User;
 
@@ -21,7 +21,7 @@ class CurrentTeamControllerTest extends OrchestraTestCase
         ]);
 
         Gate::policy(Team::class, TeamPolicy::class);
-        Jetstream::useUserModel(User::class);
+        Access::useUserModel(User::class);
     }
 
     public function test_can_switch_to_team_the_user_belongs_to()

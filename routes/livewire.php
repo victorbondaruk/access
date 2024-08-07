@@ -8,16 +8,16 @@ use Victorbondaruk\Access\Http\Controllers\Livewire\TeamController;
 use Victorbondaruk\Access\Http\Controllers\Livewire\TermsOfServiceController;
 use Victorbondaruk\Access\Http\Controllers\Livewire\UserProfileController;
 use Victorbondaruk\Access\Http\Controllers\TeamInvitationController;
-use Victorbondaruk\Access\Jetstream;
+use Victorbondaruk\Access\Access;
 
 Route::group(['middleware' => config('jetstream.middleware', ['web'])], function () {
-    if (Jetstream::hasTermsAndPrivacyPolicyFeature()) {
+    if (Access::hasTermsAndPrivacyPolicyFeature()) {
         Route::get('/terms-of-service', [TermsOfServiceController::class, 'show'])->name('terms.show');
         Route::get('/privacy-policy', [PrivacyPolicyController::class, 'show'])->name('policy.show');
     }
 
     $authMiddleware = config('jetstream.guard')
-        ? 'auth:'.config('jetstream.guard')
+        ? 'auth:' . config('jetstream.guard')
         : 'auth';
 
     $authSessionMiddleware = config('jetstream.auth_session', false)
@@ -30,12 +30,12 @@ Route::group(['middleware' => config('jetstream.middleware', ['web'])], function
 
         Route::group(['middleware' => 'verified'], function () {
             // API...
-            if (Jetstream::hasApiFeatures()) {
+            if (Access::hasApiFeatures()) {
                 Route::get('/user/api-tokens', [ApiTokenController::class, 'index'])->name('api-tokens.index');
             }
 
             // Teams...
-            if (Jetstream::hasTeamFeatures()) {
+            if (Access::hasTeamFeatures()) {
                 Route::get('/teams/create', [TeamController::class, 'create'])->name('teams.create');
                 Route::get('/teams/{team}', [TeamController::class, 'show'])->name('teams.show');
                 Route::put('/current-team', [CurrentTeamController::class, 'update'])->name('current-team.update');

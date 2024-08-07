@@ -12,10 +12,10 @@ use Victorbondaruk\Access\Contracts\InvitesTeamMembers;
 use Victorbondaruk\Access\Contracts\RemovesTeamMembers;
 use Victorbondaruk\Access\Contracts\UpdatesTeamNames;
 
-class Jetstream
+class Access
 {
     /**
-     * Indicates if Jetstream routes will be registered.
+     * Indicates if Access routes will be registered.
      *
      * @var bool
      */
@@ -43,28 +43,28 @@ class Jetstream
     public static $defaultPermissions = [];
 
     /**
-     * The user model that should be used by Jetstream.
+     * The user model that should be used by Access.
      *
      * @var string
      */
     public static $userModel = 'App\\Models\\User';
 
     /**
-     * The team model that should be used by Jetstream.
+     * The team model that should be used by Access.
      *
      * @var string
      */
     public static $teamModel = 'App\\Models\\Team';
 
     /**
-     * The membership model that should be used by Jetstream.
+     * The membership model that should be used by Access.
      *
      * @var string
      */
     public static $membershipModel = 'App\\Models\\Membership';
 
     /**
-     * The team invitation model that should be used by Jetstream.
+     * The team invitation model that should be used by Access.
      *
      * @var string
      */
@@ -78,7 +78,7 @@ class Jetstream
     public static $inertiaManager;
 
     /**
-     * Determine if Jetstream has registered roles.
+     * Determine if Access has registered roles.
      *
      * @return bool
      */
@@ -109,10 +109,10 @@ class Jetstream
     public static function role(string $key, string $name, array $permissions)
     {
         static::$permissions = collect(array_merge(static::$permissions, $permissions))
-                                    ->unique()
-                                    ->sort()
-                                    ->values()
-                                    ->all();
+            ->unique()
+            ->sort()
+            ->values()
+            ->all();
 
         return tap(new Role($key, $name, $permissions), function ($role) use ($key) {
             static::$roles[$key] = $role;
@@ -120,7 +120,7 @@ class Jetstream
     }
 
     /**
-     * Determine if any permissions have been registered with Jetstream.
+     * Determine if any permissions have been registered with Access.
      *
      * @return bool
      */
@@ -167,7 +167,7 @@ class Jetstream
     }
 
     /**
-     * Determine if Jetstream is managing profile photos.
+     * Determine if Access is managing profile photos.
      *
      * @return bool
      */
@@ -177,7 +177,7 @@ class Jetstream
     }
 
     /**
-     * Determine if Jetstream is supporting API features.
+     * Determine if Access is supporting API features.
      *
      * @return bool
      */
@@ -187,7 +187,7 @@ class Jetstream
     }
 
     /**
-     * Determine if Jetstream is supporting team features.
+     * Determine if Access is supporting team features.
      *
      * @return bool
      */
@@ -205,8 +205,8 @@ class Jetstream
     public static function userHasTeamFeatures($user)
     {
         return (array_key_exists(HasTeams::class, class_uses_recursive($user)) ||
-                method_exists($user, 'currentTeam')) &&
-                static::hasTeamFeatures();
+            method_exists($user, 'currentTeam')) &&
+            static::hasTeamFeatures();
     }
 
     /**
@@ -274,7 +274,7 @@ class Jetstream
     }
 
     /**
-     * Specify the user model that should be used by Jetstream.
+     * Specify the user model that should be used by Access.
      *
      * @param  string  $model
      * @return static
@@ -309,7 +309,7 @@ class Jetstream
     }
 
     /**
-     * Specify the team model that should be used by Jetstream.
+     * Specify the team model that should be used by Access.
      *
      * @param  string  $model
      * @return static
@@ -332,7 +332,7 @@ class Jetstream
     }
 
     /**
-     * Specify the membership model that should be used by Jetstream.
+     * Specify the membership model that should be used by Access.
      *
      * @param  string  $model
      * @return static
@@ -355,7 +355,7 @@ class Jetstream
     }
 
     /**
-     * Specify the team invitation model that should be used by Jetstream.
+     * Specify the team invitation model that should be used by Access.
      *
      * @param  string  $model
      * @return static
@@ -445,7 +445,7 @@ class Jetstream
     }
 
     /**
-     * Manage Jetstream's Inertia settings.
+     * Manage Access's Inertia settings.
      *
      * @return \Victorbondaruk\Access\InertiaManager
      */
@@ -466,18 +466,18 @@ class Jetstream
      */
     public static function localizedMarkdownPath($name)
     {
-        $localName = preg_replace('#(\.md)$#i', '.'.app()->getLocale().'$1', $name);
+        $localName = preg_replace('#(\.md)$#i', '.' . app()->getLocale() . '$1', $name);
 
         return Arr::first([
-            resource_path('markdown/'.$localName),
-            resource_path('markdown/'.$name),
+            resource_path('markdown/' . $localName),
+            resource_path('markdown/' . $name),
         ], function ($path) {
             return file_exists($path);
         });
     }
 
     /**
-     * Configure Jetstream to not register its routes.
+     * Configure Access to not register its routes.
      *
      * @return static
      */

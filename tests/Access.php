@@ -2,42 +2,42 @@
 
 namespace Victorbondaruk\Access\Tests;
 
-use Victorbondaruk\Access\Jetstream;
+use Victorbondaruk\Access\Access;
 
-class JetstreamTest extends OrchestraTestCase
+class AccessTest extends OrchestraTestCase
 {
     public function test_roles_can_be_registered()
     {
-        Jetstream::$permissions = [];
-        Jetstream::$roles = [];
+        Access::$permissions = [];
+        Access::$roles = [];
 
-        Jetstream::role('admin', 'Admin', [
+        Access::role('admin', 'Admin', [
             'read',
             'create',
         ])->description('Admin Description');
 
-        Jetstream::role('editor', 'Editor', [
+        Access::role('editor', 'Editor', [
             'read',
             'update',
             'delete',
         ])->description('Editor Description');
 
-        $this->assertTrue(Jetstream::hasPermissions());
+        $this->assertTrue(Access::hasPermissions());
 
         $this->assertEquals([
             'create',
             'delete',
             'read',
             'update',
-        ], Jetstream::$permissions);
+        ], Access::$permissions);
     }
 
     public function test_roles_can_be_json_serialized()
     {
-        Jetstream::$permissions = [];
-        Jetstream::$roles = [];
+        Access::$permissions = [];
+        Access::$roles = [];
 
-        $role = Jetstream::role('admin', 'Admin', [
+        $role = Access::role('admin', 'Admin', [
             'read',
             'create',
         ])->description('Admin Description');
@@ -52,9 +52,9 @@ class JetstreamTest extends OrchestraTestCase
 
     public function test_has_team_feature_will_always_return_false_when_team_is_not_enabled()
     {
-        $this->assertFalse(Jetstream::hasTeamFeatures());
-        $this->assertFalse(Jetstream::userHasTeamFeatures(new Fixtures\User));
-        $this->assertFalse(Jetstream::userHasTeamFeatures(new Fixtures\Admin));
+        $this->assertFalse(Access::hasTeamFeatures());
+        $this->assertFalse(Access::userHasTeamFeatures(new Fixtures\User));
+        $this->assertFalse(Access::userHasTeamFeatures(new Fixtures\Admin));
     }
 
     /**
@@ -62,8 +62,8 @@ class JetstreamTest extends OrchestraTestCase
      */
     public function test_has_team_feature_can_be_determined_when_team_is_enabled()
     {
-        $this->assertTrue(Jetstream::hasTeamFeatures());
-        $this->assertTrue(Jetstream::userHasTeamFeatures(new Fixtures\User));
-        $this->assertFalse(Jetstream::userHasTeamFeatures(new Fixtures\Admin));
+        $this->assertTrue(Access::hasTeamFeatures());
+        $this->assertTrue(Access::userHasTeamFeatures(new Fixtures\User));
+        $this->assertFalse(Access::userHasTeamFeatures(new Fixtures\Admin));
     }
 }

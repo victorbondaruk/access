@@ -2,13 +2,13 @@
 
 namespace Victorbondaruk\Access\Tests;
 
-use App\Actions\Jetstream\AddTeamMember;
-use App\Actions\Jetstream\CreateTeam;
+use App\Actions\Access\AddTeamMember;
+use App\Actions\Access\CreateTeam;
 use App\Models\Team;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Validation\ValidationException;
-use Victorbondaruk\Access\Jetstream;
+use Victorbondaruk\Access\Access;
 use Victorbondaruk\Access\Membership;
 use Victorbondaruk\Access\Tests\Fixtures\TeamPolicy;
 use Victorbondaruk\Access\Tests\Fixtures\User;
@@ -24,12 +24,12 @@ class AddTeamMemberTest extends OrchestraTestCase
 
         Gate::policy(Team::class, TeamPolicy::class);
 
-        Jetstream::useUserModel(User::class);
+        Access::useUserModel(User::class);
     }
 
     public function test_team_members_can_be_added()
     {
-        Jetstream::role('admin', 'Admin', ['foo']);
+        Access::role('admin', 'Admin', ['foo']);
 
         $team = $this->createTeam();
 
