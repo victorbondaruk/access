@@ -1,10 +1,10 @@
 <?php
 
-namespace Laravel\Jetstream\Http\Controllers;
+namespace Victorbondaruk\Access\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-use Laravel\Jetstream\Jetstream;
+use Victorbondaruk\Access\Jetstream;
 
 class CurrentTeamController extends Controller
 {

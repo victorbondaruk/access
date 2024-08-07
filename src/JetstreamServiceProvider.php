@@ -1,6 +1,6 @@
 <?php
 
-namespace Laravel\Jetstream;
+namespace Victorbondaruk\Access;
 
 use App\Http\Middleware\HandleInertiaRequests;
 use Illuminate\Contracts\Http\Kernel;
@@ -14,18 +14,18 @@ use Illuminate\View\Compilers\BladeCompiler;
 use Inertia\Inertia;
 use Laravel\Fortify\Events\PasswordUpdatedViaController;
 use Laravel\Fortify\Fortify;
-use Laravel\Jetstream\Http\Livewire\ApiTokenManager;
-use Laravel\Jetstream\Http\Livewire\CreateTeamForm;
-use Laravel\Jetstream\Http\Livewire\DeleteTeamForm;
-use Laravel\Jetstream\Http\Livewire\DeleteUserForm;
-use Laravel\Jetstream\Http\Livewire\LogoutOtherBrowserSessionsForm;
-use Laravel\Jetstream\Http\Livewire\NavigationMenu;
-use Laravel\Jetstream\Http\Livewire\TeamMemberManager;
-use Laravel\Jetstream\Http\Livewire\TwoFactorAuthenticationForm;
-use Laravel\Jetstream\Http\Livewire\UpdatePasswordForm;
-use Laravel\Jetstream\Http\Livewire\UpdateProfileInformationForm;
-use Laravel\Jetstream\Http\Livewire\UpdateTeamNameForm;
-use Laravel\Jetstream\Http\Middleware\ShareInertiaData;
+use Victorbondaruk\Access\Http\Livewire\ApiTokenManager;
+use Victorbondaruk\Access\Http\Livewire\CreateTeamForm;
+use Victorbondaruk\Access\Http\Livewire\DeleteTeamForm;
+use Victorbondaruk\Access\Http\Livewire\DeleteUserForm;
+use Victorbondaruk\Access\Http\Livewire\LogoutOtherBrowserSessionsForm;
+use Victorbondaruk\Access\Http\Livewire\NavigationMenu;
+use Victorbondaruk\Access\Http\Livewire\TeamMemberManager;
+use Victorbondaruk\Access\Http\Livewire\TwoFactorAuthenticationForm;
+use Victorbondaruk\Access\Http\Livewire\UpdatePasswordForm;
+use Victorbondaruk\Access\Http\Livewire\UpdateProfileInformationForm;
+use Victorbondaruk\Access\Http\Livewire\UpdateTeamNameForm;
+use Victorbondaruk\Access\Http\Middleware\ShareInertiaData;
 use Livewire\Livewire;
 
 class JetstreamServiceProvider extends ServiceProvider
@@ -148,7 +148,7 @@ class JetstreamServiceProvider extends ServiceProvider
     {
         if (Jetstream::$registersRoutes) {
             Route::group([
-                'namespace' => 'Laravel\Jetstream\Http\Controllers',
+                'namespace' => 'Victorbondaruk\Access\Http\Controllers',
                 'domain' => config('jetstream.domain', null),
                 'prefix' => config('jetstream.prefix', config('jetstream.path')),
             ], function () {

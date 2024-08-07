@@ -1,12 +1,12 @@
 <?php
 
-namespace Laravel\Jetstream\Http\Middleware;
+namespace Victorbondaruk\Access\Http\Middleware;
 
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Session;
 use Inertia\Inertia;
 use Laravel\Fortify\Features;
-use Laravel\Jetstream\Jetstream;
+use Victorbondaruk\Access\Jetstream;
 
 class ShareInertiaData
 {

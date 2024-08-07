@@ -1,18 +1,18 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Laravel\Jetstream\Http\Controllers\CurrentTeamController;
-use Laravel\Jetstream\Http\Controllers\Inertia\ApiTokenController;
-use Laravel\Jetstream\Http\Controllers\Inertia\CurrentUserController;
-use Laravel\Jetstream\Http\Controllers\Inertia\OtherBrowserSessionsController;
-use Laravel\Jetstream\Http\Controllers\Inertia\PrivacyPolicyController;
-use Laravel\Jetstream\Http\Controllers\Inertia\ProfilePhotoController;
-use Laravel\Jetstream\Http\Controllers\Inertia\TeamController;
-use Laravel\Jetstream\Http\Controllers\Inertia\TeamMemberController;
-use Laravel\Jetstream\Http\Controllers\Inertia\TermsOfServiceController;
-use Laravel\Jetstream\Http\Controllers\Inertia\UserProfileController;
-use Laravel\Jetstream\Http\Controllers\TeamInvitationController;
-use Laravel\Jetstream\Jetstream;
+use Victorbondaruk\Access\Http\Controllers\CurrentTeamController;
+use Victorbondaruk\Access\Http\Controllers\Inertia\ApiTokenController;
+use Victorbondaruk\Access\Http\Controllers\Inertia\CurrentUserController;
+use Victorbondaruk\Access\Http\Controllers\Inertia\OtherBrowserSessionsController;
+use Victorbondaruk\Access\Http\Controllers\Inertia\PrivacyPolicyController;
+use Victorbondaruk\Access\Http\Controllers\Inertia\ProfilePhotoController;
+use Victorbondaruk\Access\Http\Controllers\Inertia\TeamController;
+use Victorbondaruk\Access\Http\Controllers\Inertia\TeamMemberController;
+use Victorbondaruk\Access\Http\Controllers\Inertia\TermsOfServiceController;
+use Victorbondaruk\Access\Http\Controllers\Inertia\UserProfileController;
+use Victorbondaruk\Access\Http\Controllers\TeamInvitationController;
+use Victorbondaruk\Access\Jetstream;
 
 Route::group(['middleware' => config('jetstream.middleware', ['web'])], function () {
     if (Jetstream::hasTermsAndPrivacyPolicyFeature()) {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Laravel\Jetstream\Events;
+namespace Victorbondaruk\Access\Events;
 
 use Illuminate\Foundation\Events\Dispatchable;
 

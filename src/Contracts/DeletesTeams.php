@@ -1,6 +1,6 @@
 <?php
 
-namespace Laravel\Jetstream\Contracts;
+namespace Victorbondaruk\Access\Contracts;
 
 /**
  * @method void delete(\Illuminate\Database\Eloquent\Model $team)

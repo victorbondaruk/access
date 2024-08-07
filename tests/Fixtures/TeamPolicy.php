@@ -1,6 +1,6 @@
 <?php
 
-namespace Laravel\Jetstream\Tests\Fixtures;
+namespace Victorbondaruk\Access\Tests\Fixtures;
 
 use App\Models\Team;
 use Illuminate\Auth\Access\HandlesAuthorization;

@@ -1,6 +1,6 @@
 <?php
 
-namespace Laravel\Jetstream\Http\Livewire;
+namespace Victorbondaruk\Access\Http\Livewire;
 
 use Illuminate\Support\Facades\Auth;
 use Laravel\Fortify\Actions\ConfirmTwoFactorAuthentication;
@@ -8,7 +8,7 @@ use Laravel\Fortify\Actions\DisableTwoFactorAuthentication;
 use Laravel\Fortify\Actions\EnableTwoFactorAuthentication;
 use Laravel\Fortify\Actions\GenerateNewRecoveryCodes;
 use Laravel\Fortify\Features;
-use Laravel\Jetstream\ConfirmsPasswords;
+use Victorbondaruk\Access\ConfirmsPasswords;
 use Livewire\Component;
 
 class TwoFactorAuthenticationForm extends Component

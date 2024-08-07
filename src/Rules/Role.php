@@ -1,9 +1,9 @@
 <?php
 
-namespace Laravel\Jetstream\Rules;
+namespace Victorbondaruk\Access\Rules;
 
 use Illuminate\Contracts\Validation\Rule;
-use Laravel\Jetstream\Jetstream;
+use Victorbondaruk\Access\Jetstream;
 
 class Role implements Rule
 {

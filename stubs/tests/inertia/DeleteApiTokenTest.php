@@ -5,7 +5,7 @@ namespace Tests\Feature;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Str;
-use Laravel\Jetstream\Features;
+use Victorbondaruk\Access\Features;
 use Tests\TestCase;
 
 class DeleteApiTokenTest extends TestCase

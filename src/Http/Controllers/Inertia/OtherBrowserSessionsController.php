@@ -1,6 +1,6 @@
 <?php
 
-namespace Laravel\Jetstream\Http\Controllers\Inertia;
+namespace Victorbondaruk\Access\Http\Controllers\Inertia;
 
 use Illuminate\Contracts\Auth\StatefulGuard;
 use Illuminate\Http\Request;

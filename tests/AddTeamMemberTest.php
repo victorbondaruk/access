@@ -1,6 +1,6 @@
 <?php
 
-namespace Laravel\Jetstream\Tests;
+namespace Victorbondaruk\Access\Tests;
 
 use App\Actions\Jetstream\AddTeamMember;
 use App\Actions\Jetstream\CreateTeam;
@@ -8,10 +8,10 @@ use App\Models\Team;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Validation\ValidationException;
-use Laravel\Jetstream\Jetstream;
-use Laravel\Jetstream\Membership;
-use Laravel\Jetstream\Tests\Fixtures\TeamPolicy;
-use Laravel\Jetstream\Tests\Fixtures\User;
+use Victorbondaruk\Access\Jetstream;
+use Victorbondaruk\Access\Membership;
+use Victorbondaruk\Access\Tests\Fixtures\TeamPolicy;
+use Victorbondaruk\Access\Tests\Fixtures\User;
 use Laravel\Sanctum\TransientToken;
 
 class AddTeamMemberTest extends OrchestraTestCase

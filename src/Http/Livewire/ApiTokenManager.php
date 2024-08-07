@@ -1,10 +1,10 @@
 <?php
 
-namespace Laravel\Jetstream\Http\Livewire;
+namespace Victorbondaruk\Access\Http\Livewire;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
-use Laravel\Jetstream\Jetstream;
+use Victorbondaruk\Access\Jetstream;
 use Livewire\Component;
 
 class ApiTokenManager extends Component

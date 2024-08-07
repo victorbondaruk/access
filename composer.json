@@ -1,11 +1,15 @@
 {
-    "name": "laravel/jetstream",
+    "name": "victorbondaruk/access",
     "description": "Tailwind scaffolding for the Laravel framework.",
-    "keywords": ["laravel", "tailwind", "auth"],
+    "keywords": [
+        "laravel",
+        "tailwind",
+        "auth"
+    ],
     "license": "MIT",
     "support": {
-        "issues": "https://github.com/laravel/jetstream/issues",
-        "source": "https://github.com/laravel/jetstream"
+        "issues": "https://github.com/victorbondaruk/access/issues",
+        "source": "https://github.com/victorbondaruk/access"
     },
     "authors": [
         {
@@ -33,12 +37,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Laravel\\Jetstream\\": "src/"
+            "Victorbondaruk\\Access\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Laravel\\Jetstream\\Tests\\": "tests/",
+            "Victorbondaruk\\Access\\Tests\\": "tests/",
             "App\\": "stubs/app/",
             "Database\\Factories\\": "database/factories/"
         }
@@ -46,7 +50,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Laravel\\Jetstream\\JetstreamServiceProvider"
+                "Victorbondaruk\\Access\\JetstreamServiceProvider"
             ]
         }
     },

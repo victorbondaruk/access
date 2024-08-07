@@ -1,13 +1,13 @@
 <?php
 
-namespace Laravel\Jetstream\Tests;
+namespace Victorbondaruk\Access\Tests;
 
 use App\Actions\Jetstream\CreateTeam;
 use Illuminate\Support\Facades\Gate;
-use Laravel\Jetstream\Jetstream;
-use Laravel\Jetstream\Team;
-use Laravel\Jetstream\Tests\Fixtures\TeamPolicy;
-use Laravel\Jetstream\Tests\Fixtures\User;
+use Victorbondaruk\Access\Jetstream;
+use Victorbondaruk\Access\Team;
+use Victorbondaruk\Access\Tests\Fixtures\TeamPolicy;
+use Victorbondaruk\Access\Tests\Fixtures\User;
 use Laravel\Sanctum\Sanctum;
 use Laravel\Sanctum\TransientToken;
 

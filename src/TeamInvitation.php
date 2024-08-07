@@ -1,6 +1,6 @@
 <?php
 
-namespace Laravel\Jetstream;
+namespace Victorbondaruk\Access;
 
 use Illuminate\Database\Eloquent\Model;
 

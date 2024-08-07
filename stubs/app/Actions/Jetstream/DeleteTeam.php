@@ -3,7 +3,7 @@
 namespace App\Actions\Jetstream;
 
 use App\Models\Team;
-use Laravel\Jetstream\Contracts\DeletesTeams;
+use Victorbondaruk\Access\Contracts\DeletesTeams;
 
 class DeleteTeam implements DeletesTeams
 {

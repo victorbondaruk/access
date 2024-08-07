@@ -1,6 +1,6 @@
 <?php
 
-namespace Laravel\Jetstream\Tests;
+namespace Victorbondaruk\Access\Tests;
 
 use App\Actions\Jetstream\CreateTeam;
 use App\Actions\Jetstream\RemoveTeamMember;
@@ -10,11 +10,11 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Validation\ValidationException;
-use Laravel\Jetstream\Events\RemovingTeamMember;
-use Laravel\Jetstream\Events\TeamMemberRemoved;
-use Laravel\Jetstream\Jetstream;
-use Laravel\Jetstream\Tests\Fixtures\TeamPolicy;
-use Laravel\Jetstream\Tests\Fixtures\User;
+use Victorbondaruk\Access\Events\RemovingTeamMember;
+use Victorbondaruk\Access\Events\TeamMemberRemoved;
+use Victorbondaruk\Access\Jetstream;
+use Victorbondaruk\Access\Tests\Fixtures\TeamPolicy;
+use Victorbondaruk\Access\Tests\Fixtures\User;
 
 class RemoveTeamMemberTest extends OrchestraTestCase
 {

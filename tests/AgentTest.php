@@ -1,8 +1,8 @@
 <?php
 
-namespace Laravel\Jetstream\Tests;
+namespace Victorbondaruk\Access\Tests;
 
-use Laravel\Jetstream\Agent;
+use Victorbondaruk\Access\Agent;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 

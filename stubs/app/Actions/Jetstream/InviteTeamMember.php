@@ -10,11 +10,11 @@ use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
-use Laravel\Jetstream\Contracts\InvitesTeamMembers;
-use Laravel\Jetstream\Events\InvitingTeamMember;
-use Laravel\Jetstream\Jetstream;
-use Laravel\Jetstream\Mail\TeamInvitation;
-use Laravel\Jetstream\Rules\Role;
+use Victorbondaruk\Access\Contracts\InvitesTeamMembers;
+use Victorbondaruk\Access\Events\InvitingTeamMember;
+use Victorbondaruk\Access\Jetstream;
+use Victorbondaruk\Access\Mail\TeamInvitation;
+use Victorbondaruk\Access\Rules\Role;
 
 class InviteTeamMember implements InvitesTeamMembers
 {

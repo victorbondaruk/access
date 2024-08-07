@@ -3,8 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Laravel\Jetstream\Jetstream;
-use Laravel\Jetstream\TeamInvitation as JetstreamTeamInvitation;
+use Victorbondaruk\Access\Jetstream;
+use Victorbondaruk\Access\TeamInvitation as JetstreamTeamInvitation;
 
 class TeamInvitation extends JetstreamTeamInvitation
 {

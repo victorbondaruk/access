@@ -1,7 +1,7 @@
 <?php
 
 use App\Models\User;
-use Laravel\Jetstream\Http\Livewire\CreateTeamForm;
+use Victorbondaruk\Access\Http\Livewire\CreateTeamForm;
 use Livewire\Livewire;
 
 test('teams can be created', function () {

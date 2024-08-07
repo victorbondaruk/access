@@ -1,7 +1,7 @@
 <?php
 
 use App\Models\User;
-use Laravel\Jetstream\Features;
+use Victorbondaruk\Access\Features;
 
 test('user accounts can be deleted', function () {
     $this->actingAs($user = User::factory()->create());

@@ -1,6 +1,6 @@
 <?php
 
-use Laravel\Jetstream\Features;
+use Victorbondaruk\Access\Features;
 
 return [
     'stack' => 'inertia',

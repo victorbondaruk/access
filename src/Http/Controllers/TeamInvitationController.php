@@ -1,13 +1,13 @@
 <?php
 
-namespace Laravel\Jetstream\Http\Controllers;
+namespace Victorbondaruk\Access\Http\Controllers;
 
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Gate;
-use Laravel\Jetstream\Contracts\AddsTeamMembers;
-use Laravel\Jetstream\Jetstream;
+use Victorbondaruk\Access\Contracts\AddsTeamMembers;
+use Victorbondaruk\Access\Jetstream;
 
 class TeamInvitationController extends Controller
 {

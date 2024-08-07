@@ -1,11 +1,11 @@
 <?php
 
-namespace Laravel\Jetstream\Tests;
+namespace Victorbondaruk\Access\Tests;
 
 use Laravel\Fortify\Actions\DisableTwoFactorAuthentication;
 use Laravel\Fortify\Features;
-use Laravel\Jetstream\Jetstream;
-use Laravel\Jetstream\Tests\Fixtures\User;
+use Victorbondaruk\Access\Jetstream;
+use Victorbondaruk\Access\Tests\Fixtures\User;
 use Mockery as m;
 
 class UserProfileControllerTest extends OrchestraTestCase

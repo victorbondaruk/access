@@ -6,9 +6,9 @@ use App\Models\Team;
 use App\Models\User;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Validator;
-use Laravel\Jetstream\Contracts\CreatesTeams;
-use Laravel\Jetstream\Events\AddingTeam;
-use Laravel\Jetstream\Jetstream;
+use Victorbondaruk\Access\Contracts\CreatesTeams;
+use Victorbondaruk\Access\Events\AddingTeam;
+use Victorbondaruk\Access\Jetstream;
 
 class CreateTeam implements CreatesTeams
 {

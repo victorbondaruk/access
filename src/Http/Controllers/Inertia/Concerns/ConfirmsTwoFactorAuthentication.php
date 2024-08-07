@@ -1,6 +1,6 @@
 <?php
 
-namespace Laravel\Jetstream\Http\Controllers\Inertia\Concerns;
+namespace Victorbondaruk\Access\Http\Controllers\Inertia\Concerns;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;

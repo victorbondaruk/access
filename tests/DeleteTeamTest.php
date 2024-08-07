@@ -1,6 +1,6 @@
 <?php
 
-namespace Laravel\Jetstream\Tests;
+namespace Victorbondaruk\Access\Tests;
 
 use App\Actions\Jetstream\CreateTeam;
 use App\Actions\Jetstream\DeleteTeam;
@@ -8,10 +8,10 @@ use App\Models\Team;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Validation\ValidationException;
-use Laravel\Jetstream\Actions\ValidateTeamDeletion;
-use Laravel\Jetstream\Jetstream;
-use Laravel\Jetstream\Tests\Fixtures\TeamPolicy;
-use Laravel\Jetstream\Tests\Fixtures\User;
+use Victorbondaruk\Access\Actions\ValidateTeamDeletion;
+use Victorbondaruk\Access\Jetstream;
+use Victorbondaruk\Access\Tests\Fixtures\TeamPolicy;
+use Victorbondaruk\Access\Tests\Fixtures\User;
 
 class DeleteTeamTest extends OrchestraTestCase
 {

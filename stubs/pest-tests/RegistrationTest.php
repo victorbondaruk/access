@@ -1,7 +1,7 @@
 <?php
 
 use Laravel\Fortify\Features;
-use Laravel\Jetstream\Jetstream;
+use Victorbondaruk\Access\Jetstream;
 
 test('registration screen can be rendered', function () {
     $response = $this->get('/register');

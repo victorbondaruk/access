@@ -1,12 +1,12 @@
 <?php
 
-namespace Laravel\Jetstream\Actions;
+namespace Victorbondaruk\Access\Actions;
 
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Validator;
-use Laravel\Jetstream\Events\TeamMemberUpdated;
-use Laravel\Jetstream\Jetstream;
-use Laravel\Jetstream\Rules\Role;
+use Victorbondaruk\Access\Events\TeamMemberUpdated;
+use Victorbondaruk\Access\Jetstream;
+use Victorbondaruk\Access\Rules\Role;
 
 class UpdateTeamMemberRole
 {

@@ -1,11 +1,11 @@
 <?php
 
-namespace Laravel\Jetstream\Tests;
+namespace Victorbondaruk\Access\Tests;
 
 use Illuminate\Foundation\Testing\LazilyRefreshDatabase;
 use Laravel\Fortify\FortifyServiceProvider;
-use Laravel\Jetstream\Features;
-use Laravel\Jetstream\JetstreamServiceProvider;
+use Victorbondaruk\Access\Features;
+use Victorbondaruk\Access\JetstreamServiceProvider;
 use Livewire\LivewireServiceProvider;
 use Orchestra\Testbench\Concerns\WithWorkbench;
 use Orchestra\Testbench\TestCase;

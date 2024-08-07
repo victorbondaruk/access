@@ -1,7 +1,7 @@
 <?php
 
-use Laravel\Jetstream\Features;
-use Laravel\Jetstream\Http\Middleware\AuthenticateSession;
+use Victorbondaruk\Access\Features;
+use Victorbondaruk\Access\Http\Middleware\AuthenticateSession;
 
 return [
 

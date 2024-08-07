@@ -1,11 +1,11 @@
 <?php
 
-namespace Laravel\Jetstream\Http\Controllers\Livewire;
+namespace Victorbondaruk\Access\Http\Controllers\Livewire;
 
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Str;
-use Laravel\Jetstream\Jetstream;
+use Victorbondaruk\Access\Jetstream;
 
 class PrivacyPolicyController extends Controller
 {

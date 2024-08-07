@@ -1,10 +1,10 @@
 <?php
 
-namespace Laravel\Jetstream\Http\Livewire;
+namespace Victorbondaruk\Access\Http\Livewire;
 
 use Illuminate\Support\Facades\Auth;
-use Laravel\Jetstream\Contracts\CreatesTeams;
-use Laravel\Jetstream\RedirectsActions;
+use Victorbondaruk\Access\Contracts\CreatesTeams;
+use Victorbondaruk\Access\RedirectsActions;
 use Livewire\Component;
 
 class CreateTeamForm extends Component
@@ -21,7 +21,7 @@ class CreateTeamForm extends Component
     /**
      * Create a new team.
      *
-     * @param  \Laravel\Jetstream\Contracts\CreatesTeams  $creator
+     * @param  \Victorbondaruk\Access\Contracts\CreatesTeams  $creator
      * @return mixed
      */
     public function createTeam(CreatesTeams $creator)

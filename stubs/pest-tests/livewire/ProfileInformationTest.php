@@ -1,7 +1,7 @@
 <?php
 
 use App\Models\User;
-use Laravel\Jetstream\Http\Livewire\UpdateProfileInformationForm;
+use Victorbondaruk\Access\Http\Livewire\UpdateProfileInformationForm;
 use Livewire\Livewire;
 
 test('current profile information is available', function () {

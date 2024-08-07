@@ -1,6 +1,6 @@
 <?php
 
-namespace Laravel\Jetstream\Events;
+namespace Victorbondaruk\Access\Events;
 
 class TeamUpdated extends TeamEvent
 {
